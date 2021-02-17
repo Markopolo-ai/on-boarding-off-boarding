@@ -10,12 +10,12 @@ when the teammember leaves, with one click from the manager, their access will b
 
 What you need to deliver
 
-[ ] UI design on Figma
-[ ] Frontend of the webapp using React-Redux
-[ ] (if needed) Backend in serverless framework
-[ ] Dockerize the app
-[ ] Make a pull request
-[ ] Documentation of the entire webapp
+- [ ] UI design on Figma
+- [ ] Frontend of the webapp using React-Redux
+- [ ] (if needed) Backend in serverless framework
+- [ ] Dockerize the app
+- [ ] Make a pull request
+- [ ] Documentation of the entire webapp
 
 If you have questions, please state your assumptions on the documentation and proceed with development.
 
