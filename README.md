@@ -1,6 +1,6 @@
 Hello candidate,
 
-You are to build a web app through which companies and organizations can onboard new recuits or teammembers with ease.
+You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
 
 How will it work?
 
