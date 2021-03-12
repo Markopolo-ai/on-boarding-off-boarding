@@ -1,26 +1,23 @@
 version: '3'
 
 services:
-
+  
   admin:
     container_name: admin
     build:
       context: ./services/admin
-      dockerfile: Dockerfile-dev
-    volumes:
-      - './services/admin:/app'
-    ports:
-      - 5001:5000
+      dockerfile: Dockerfile-prod
+    expose:
+     - '5000'
     environment:
-      - FLASK_DEBUG=1
-      - APP_SETTINGS=admin.config.DevelopmentConfig
-      - DATABASE_URL=postgres://postgres:postgres@admin-db:5432/admin_dev
+      - APP_SETTINGS=admin.config.ProductionConfig
+      - DATABASE_URL=postgres://postgres:postgres@admin-db:5432/admin_prod
       - DATABASE_TEST_URL=postgres://postgres:postgres@admin-db:5432/admin_test
     depends_on:
       - admin-db
     links:
       - admin-db
-
+  
   admin-db:
     container_name: admin-db
     build:
@@ -31,4 +28,16 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-  
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./services/nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - admin
+    links:
+      - admin
