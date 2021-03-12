@@ -25,5 +25,5 @@ class Admin(db.Model):
 def ping():
     return jsonify({
         'status': 'success',
-        'message': 'ping pong'
+        'message': 'ping pong!'
     })

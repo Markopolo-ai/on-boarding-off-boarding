@@ -4,6 +4,7 @@ import os
 class BaseConfig:
     """Base configuration"""
     TESTING = False
+    SECRET_KEY = 'MUSABBIR21HASAN'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class DevelopmentConfig(BaseConfig):
