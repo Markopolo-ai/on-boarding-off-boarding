@@ -2,9 +2,9 @@ import unittest
 
 from flask_script import Manager
 
-from project import app, db
+from admin import create_app, db
 
-
+app = create_app()
 manager = Manager(app)
 
 @manager.command
@@ -15,7 +15,7 @@ def recreate_db():
 
 @manager.command
 def test():
-    tests = unittest.TestLoader().discover('project/tests', pattern='test*.py')
+    tests = unittest.TestLoader().discover('admin/tests', pattern='test*.py')
     result = unittest.TextTestRunner(verbosity=2).run(tests)
     if result.wasSuccessful():
         return 0
