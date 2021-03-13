@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, redirect, session, url_for, g
+from flask import Blueprint, jsonify, request
 from flask_login import login_user, logout_user, current_user
 from sqlalchemy import exc
 
@@ -178,6 +178,33 @@ def get_admin(admin_id):
             }
         }
         return jsonify(response), 200
+
+
+@admins_blueprint.route('/admins/<admin_id>', methods=['DELETE'])
+@require_login
+@require_superadmin_permission
+def delete_admin(admin_id):
+    response = {
+        'status': 'fail',
+        'message': 'Admin does not exist'
+    }
+
+    admin = Admin.query.filter_by(id=admin_id).first()
+    if not admin:
+        return jsonify(response), 404
+    else:
+        try:
+            db.session.delete(admin)
+            db.session.commit()
+            response = {
+                'status': 'success',
+                'data': 'Successfully deleted'
+            }
+            return jsonify(response), 200
+        except exc.IntegrityError:
+            db.session.rollback()
+            response['message'] = 'Sorry! We messed up something'
+            return jsonify(response), 500
 
 
 @admins_blueprint.route('/admins', methods=['GET'])
