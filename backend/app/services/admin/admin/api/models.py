@@ -39,14 +39,6 @@ class Admin(db.Model, UserMixin):
         self.password = password
         self.is_superadmin = is_super
 
-    def to_json(self):
-        return {
-            'id': self.id,
-            'email': self.email,
-            'password': self.password,
-            'is_superadmin': self.is_superadmin
-        }
-
 
 class Staff(db.Model):
     """Staff model for the staffs.
@@ -77,25 +69,19 @@ class Staff(db.Model):
     admin_id = db.Column(db.Integer, db.ForeignKey('admins.id'))
     github_actions = db.relationship('GithubAccessHistory', backref='action_on')
 
-    def __init__(self, email, added_by, github_status='None'):
+    def __init__(self, email, added_by, github_status='uninvited'):
         self.email = email
         self.github_status = github_status
-        self.added_by = added_by
-    
-    def to_json(self):
-        return {
-            'id': self.id,
-            'email': self.email,
-            'github_status': self.github_status,
-            'added_by': self.added_by.email
-        }
+        self.added_by = added_by    
 
 
 class GithubAccessHistory(db.Model):
     """History of Github access permission by Admins on Staffs.
 
     Contains all the detailed invoked or revoked histories of 
-    github permission on staffs.
+    github permission on staffs. The action field will contain any
+    comments about the action such as invoked permission, revoked
+    permission, cancelled pending, etc.
 
     This model is backreferenced by Admin through action_by field,
     and Staff through action_on field. Therefore, the Admin and the
@@ -107,7 +93,7 @@ class GithubAccessHistory(db.Model):
     """
     __tablename__ = 'githubaccesshistory'
 
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     action = db.Column(db.String(128), nullable=False)
     datetime = db.Column(db.DateTime, nullable=False)
 
