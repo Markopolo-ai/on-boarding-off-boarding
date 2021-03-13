@@ -4,6 +4,26 @@ from admin import db
 
 
 class Admin(db.Model, UserMixin):
+    """Admin model for the admins.
+
+    The admin model is extended by the UserMixin model supplied by the
+    Flask-Login package. The UserMixin model contains several commonly
+    used fields like is_authenticated, is_annonymous, and others which
+    are commonly needed for authenticating a user.
+
+    The application requires atleast one superadmin throughout its life-
+    cycle as only they can create or remove other admins. Default value
+    of is_superadmin is false.
+
+    An Admin is related to two other models so far. First one is to a
+    Staff through one-to-many relationship. An Admin can create many
+    staffs. Another is to the GithubAccessHistory, also through a one-
+    to-many relationship. An Admin can invoke or revoke permissions of
+    many Staffs many times.
+
+    Any history of invoking or revoking github permissions on any staff
+    by the Admin can be accessed through github_actions field.
+    """
     __tablename__ = 'admins'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -29,6 +49,24 @@ class Admin(db.Model, UserMixin):
 
 
 class Staff(db.Model):
+    """Staff model for the staffs.
+
+    Staff is a simple model for the staffs, where each staff is
+    identified by his email. It contains a github_status field
+    which contains the current access status of the staff to the
+    organization's github repositories. This field can contain 
+    one of the following values:
+        1. 'uninvited': the staff has not been invited yet
+        2. 'pending': the staff is invited but not accepted invitation
+        3. 'granted': the staff has access to the github repos
+    
+    This model is backreferenced by an Admin who created the Staff.
+    During initialization, it is required to pass the Admin through
+    added_by parameter.
+
+    Any history of invoked or revoked permissions on this Staff can be
+    accessed through github_actions field.
+    """
     __tablename__ = 'staffs'
     
     id = db.Column(db.Integer, primary_key=True)
@@ -54,6 +92,19 @@ class Staff(db.Model):
 
 
 class GithubAccessHistory(db.Model):
+    """History of Github access permission by Admins on Staffs.
+
+    Contains all the detailed invoked or revoked histories of 
+    github permission on staffs.
+
+    This model is backreferenced by Admin through action_by field,
+    and Staff through action_on field. Therefore, the Admin and the
+    Staff related to a particular history should be supplied to the
+    initializer through the respected arguments.
+
+    admin_id and staff_id will then automatically contain the ids of
+    respective models related to the particular history.
+    """
     __tablename__ = 'githubaccesshistory'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
