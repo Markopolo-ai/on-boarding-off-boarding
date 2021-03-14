@@ -1,0 +1,17 @@
+
+.app-input > input {
+    margin-top: 4%;
+    margin-left: 31%;
+    width: 35%;
+    height: 40px;
+    text-align: center;
+    font-size: 19px;
+    min-width: 350px;
+}
+.app-input > button {
+
+    height: 40px;
+    background: white;
+    border: 1px solid;
+    width: 75px;
+}

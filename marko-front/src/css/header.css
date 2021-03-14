@@ -1,0 +1,25 @@
+.app-header{
+    height: 50px;
+    width: 100vw;
+    background:#222222;
+    /* display: flex;
+    justify-content: space-around; */
+    color:white;
+    opacity: 61%;
+}
+
+.app-header > .logout {
+    float: right;
+    margin-left: 30px;
+    opacity: 90%;
+    padding: 14px;
+    padding-right: 29px;
+    text-align: center;
+    background: #0c0c0c;
+    cursor: pointer;
+}
+.app-header > .name {
+    float: left;
+    padding: 10px ;
+    margin-left:60px;
+}

@@ -1,0 +1,17 @@
+
+.app-pagination{
+    float: right;
+    margin-right: 13%;
+    display: flex;
+    width: 74%;
+    justify-content: flex-end;
+}
+
+.app-pagination > div {
+    padding: 3px 14px 3px 14px;
+    border: 2px solid;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 1%;
+    cursor: pointer;
+}

@@ -1,8 +1,12 @@
+import LoginBox from '../component/LoginBox' ;
+import "../css/login.css"
 function Login() {
 
     return (
-        <div>
-            Login Page 
+        <div className='login'>
+            <div>
+                <LoginBox/>
+            </div>
         </div>
     ) ;
 }
