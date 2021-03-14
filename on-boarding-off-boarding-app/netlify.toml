@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "cd on-boarding-off-boarding-app && npm run build"
   functions = "dist/functions" 
 [[redirects]]
     from = "/api/*"
