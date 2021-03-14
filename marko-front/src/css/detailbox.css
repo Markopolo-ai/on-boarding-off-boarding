@@ -1,0 +1,39 @@
+.detail-box {
+    margin-top:6%;
+    margin-left:35%;
+}
+.box{
+    border: 2px solid;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    height: 274px;
+    justify-content: space-evenly;
+}
+.box button {
+    background: white;
+    width: 100px;
+    border: 1px solid;
+    /* font-weight: bold; */
+}
+.box > div {
+    display: flex;
+    justify-content: baseline;
+    justify-items: baseline;
+}
+svg {
+    margin-top: 12px;
+    margin-left: 62px;
+}
+
+.access-btn{
+    margin-top: -9px;
+    margin-left: 82px;
+}
+
+.email {
+    font-size: 23px;
+    /* text-align: center; */
+    margin-left: 8%;
+    margin-bottom: 3%;
+}

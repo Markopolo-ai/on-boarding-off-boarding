@@ -1,8 +1,18 @@
 
+import Header from '../component/Header' ;
+import DetailBox from '../component/DetailBox' ;
+import '../css/detail.css' ;
+
 function Detail() {
 
     return (
-        <div> this is detail page </div>
+        <div>
+            
+            <Header/>
+                
+            <DetailBox/>
+
+         </div>
     ) ;
 }
 
