@@ -1,0 +1,112 @@
+.header-container {
+    display: inline-block;
+    position: relative;
+}
+
+.navbar-left{
+    float: left;
+}
+.navbar-right{
+    float: right;
+}
+
+.nav-menu{
+    margin: 10px;
+    cursor: pointer;
+    .selected{
+        border-bottom: 2px solid orangered;
+    }
+    a{
+        text-decoration: none;
+        color: black;
+        &:hover{
+            text-decoration: none;
+            color: black;
+        }
+        &:focus{
+            font-size: 16px !important;
+        }
+    }
+}
+
+.nav-menu-right{
+    display: inline-flex;
+    margin: 2px;
+    font-size: 1.2rem;
+    right: -4rem;
+    cursor: pointer;
+    i{
+        margin-top: 6px;
+        margin-right: 5px;
+        color: orangered;
+    }
+    .search-input {
+        position: relative;
+        right: 9rem;
+        top: 0.1rem;
+        i{
+            margin-left: -1.5rem;
+            text-decoration: none;
+        }
+        input{
+            border: 2px solid orangered;
+            box-shadow: 2px 2px black;
+            border-radius: 6px;
+            padding: 0 5px;
+            &:focus {
+                border: 2px solid orangered !important;
+                box-shadow: 2px 2px black !important;
+                border-radius: 6px;
+                padding: 0 5px;
+                font-size: 19px;
+            }
+        }
+        a:focus{
+            font-size: 16px !important;
+        }
+    }
+    .user-section{
+        font-size: 2rem;
+        i{
+            color: orangered;
+        }
+    }
+    .username{
+        font-size: 0.8rem;
+        margin-left: 5px;
+        margin-top: 19px;
+        // margin-right: 12px;
+        word-break: break-all;
+    }
+    .option-caret {
+        margin-top: 15px;
+    }
+    &:focus{
+        font-size: 16px;
+    }
+}
+
+.wordart {
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .wordart.italic-outline .text {
+        .lower-case {
+            text-transform: lowercase;
+        }
+        letter-spacing: -0.01em;
+        font-family: Open Sans Condensed;
+        font-weight: bold;
+        color: #fff;
+        -webkit-text-stroke: 0.04em #de5c0f;
+        filter: progid:DXImageTransform.Microsoft.Glow(Color=#000000, Strength=1);
+        text-shadow: 0.03em 0.03em 0 #6d6d6d;
+    }
