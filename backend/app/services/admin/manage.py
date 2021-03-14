@@ -2,7 +2,7 @@ import unittest
 
 from flask_script import Manager
 
-from admin import create_app, db
+from admin import create_app, db, bcrypt
 
 app = create_app()
 manager = Manager(app)
@@ -12,6 +12,15 @@ def recreate_db():
     db.drop_all()
     db.create_all()
     db.session.commit()
+
+
+@manager.command
+def create_superadmin():
+    from admin.api.models import Admin
+    superadmin = Admin('superadmin', bcrypt.generate_password_hash('superadmin').decode('utf-8'), True)
+    db.session.add(superadmin)
+    db.session.commit()
+
 
 @manager.command
 def test():
