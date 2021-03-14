@@ -31,6 +31,6 @@ def require_superadmin_permission(func):
         else:
             return jsonify({
                 'status': 'fail',
-                'message': 'requires superadmin capability'
+                'message': 'Requires superadmin capability'
             }), 401
     return check_superadmin_capability
