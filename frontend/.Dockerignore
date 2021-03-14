@@ -1,7 +1,11 @@
 node_modules
 npm-debug.log
+coverage
 build
+env
+htmlcov
 .dockerignore
+Dockerfile-dev
+Dockerfile-prod
 **/.git
 **/.DS_Store
-**/node_modules

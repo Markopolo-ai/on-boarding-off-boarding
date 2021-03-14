@@ -5,10 +5,10 @@ services:
   admin:
     container_name: admin
     build:
-      context: ./services/admin
+      context: ./backend
       dockerfile: Dockerfile-dev
     volumes:
-      - './services/admin:/app'
+      - './backend:/app'
     ports:
       - 5001:5000
     environment:
@@ -18,13 +18,11 @@ services:
       - DATABASE_TEST_URL=postgres://postgres:postgres@admin-db:5432/admin_test
     depends_on:
       - admin-db
-    links:
-      - admin-db
 
   admin-db:
     container_name: admin-db
     build:
-      context: ./services/admin/db
+      context: ./db
       dockerfile: Dockerfile
     ports:
       - 5435:5432
@@ -32,3 +30,32 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
   
+  frontend:
+    container_name: frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile-dev
+    volumes:
+      - './frontend:/app'
+      - '/app/node_modules'
+    ports:
+      - 3007:3001
+    environment:
+      - NODE_ENV=development
+      - ADMIN_SERVICE_URL=${ADMIN_SERVICE_URL}
+    depends_on:
+      - admin
+    links:
+      - admin
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+    - 80:80
+    depends_on:
+    - admin
+    - frontend

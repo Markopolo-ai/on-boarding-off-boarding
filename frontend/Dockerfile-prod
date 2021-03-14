@@ -1,0 +1,28 @@
+FROM node:14-alpine as builder
+
+RUN mkdir -p /app
+WORKDIR /app
+
+ENV PATH /app/node_modules/.bin:$PATH
+
+ARG ADMIN_SERVICE_URL
+ARG NODE_ENV
+
+ENV NODE_ENV $NODE_ENV
+ENV ADMIN_SERVICE_URL $ADMIN_SERVICE_URL
+
+COPY package.json /app/package.json
+
+RUN npm install --silent
+RUN npm install react-scripts --silent
+
+COPY . /app
+
+RUN npm run build
+
+FROM nginx-alpine
+COPY --from=builder /app/build /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

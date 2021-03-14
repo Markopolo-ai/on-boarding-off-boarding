@@ -5,8 +5,9 @@ services:
   admin:
     container_name: admin
     build:
-      context: ./services/admin
+      context: ./backend
       dockerfile: Dockerfile-prod
+    
     expose:
      - '5000'
     environment:

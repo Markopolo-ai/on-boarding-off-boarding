@@ -1,22 +1,21 @@
-Hello candidate,
+# On-Boarding Off-Boarding
 
-You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
+This application provides capability of invoking or revoking permissions to organization's github repositories for its members through a single click. It is broadly divided into **4** docker containerized microservices, which are:
 
-How will it work?
+1. Nginx server,
+2. PostgreSQL Database,
+3. REST API with Flask, and
+4. Front-end, with React.
 
-New teammmember provides the manager with their email id. The manager will input that email id into the web app and 
-the teammember will get access to the organization's Github, Trello, folders in Google Drive, Slack. In similar way,
-when the teammember leaves, with one click from the manager, their access will be revoked.
+## Setup
+To setup the application for development or testing purpose, just run thie following commands to start all the docker containers.
+```
+sudo docker-compose -f docker-compose-dev.yml build
+sudo docker-compose -f docker-compose-dev.yml up -d
+```
+After the containers are up and running, run the following commands to setup database and create a super admin which is essential for the application. Note that the initial super admin has email **'superadmin'** and password **'superadmin'**.
+```
+sudo docker-compose -f docker-compose-dev.yml run admin python manage.py recreate_db
+sudo docker-compose -f docker-compose-dev.yml run admin python manage.py create_superadmin
+```
 
-What you need to deliver
-
-- [ ] UI design on Figma
-- [ ] Frontend of the webapp using React-Redux
-- [ ] (if needed) Backend in serverless framework
-- [ ] Dockerize the app
-- [ ] Make a pull request
-- [ ] Documentation of the entire webapp
-
-If you have questions, please state your assumptions on the documentation and proceed with development.
-
-Happy hacking!

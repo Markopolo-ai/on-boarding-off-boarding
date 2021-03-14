@@ -23,9 +23,9 @@ def create_app(script_info=None):
     from admin.api.admins import admins_blueprint
     from admin.api.staffs import staffs_blueprint
     from admin.api.github import github_blueprint
-    app.register_blueprint(admins_blueprint)
-    app.register_blueprint(staffs_blueprint)
-    app.register_blueprint(github_blueprint)
+    app.register_blueprint(admins_blueprint, url_prefix='/api')
+    app.register_blueprint(staffs_blueprint, url_prefix='/api')
+    app.register_blueprint(github_blueprint, url_prefix='/api')
 
     app.shell_context_processor({
         'app': app,
