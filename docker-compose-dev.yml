@@ -18,6 +18,8 @@ services:
       - DATABASE_TEST_URL=postgres://postgres:postgres@admin-db:5432/admin_test
     depends_on:
       - admin-db
+    links:
+      - admin-db
 
   admin-db:
     container_name: admin-db
@@ -37,9 +39,8 @@ services:
       dockerfile: Dockerfile-dev
     volumes:
       - './frontend:/app'
-      - '/app/node_modules'
     ports:
-      - 3007:3001
+      - 3007:3000
     environment:
       - NODE_ENV=development
       - ADMIN_SERVICE_URL=${ADMIN_SERVICE_URL}
@@ -52,7 +53,7 @@ services:
     container_name: nginx
     build:
       context: ./nginx
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-dev
     restart: always
     ports:
     - 80:80
