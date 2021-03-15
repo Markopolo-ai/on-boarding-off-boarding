@@ -14,6 +14,6 @@ from api.serializers import MemberSerializer
 class MemberViewSet(viewsets.ModelViewSet):
     queryset = MemberModel.objects.all()
     serializer_class = MemberSerializer
-    permission_classes  = [IsAuthenticated] 
+    # permission_classes  = [IsAuthenticated] 
 
     # todo : custom method 
