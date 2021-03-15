@@ -1,7 +1,7 @@
 # example netlify.toml
 [build]
   functions = "function-build"
-  publish = "build"
+  command = "npm run prod"
 
 [[redirects]]
   to = "/.netlify/functions/:splat"
