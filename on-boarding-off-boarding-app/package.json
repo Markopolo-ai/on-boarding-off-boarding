@@ -2,13 +2,14 @@
   "name": "on-boarding-off-boarding-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://localhost:4000/",
+  "proxy": "http://localhost:9000/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "cors": "^2.8.5",
     "font-awesome": "^4.7.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -25,7 +26,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start:lambda": "netlify-lambda serve lambda"
   },
   "eslintConfig": {
     "extends": [

@@ -1,8 +1,11 @@
+# example netlify.toml
 [build]
-  publish = "dist"
-  command = "cd on-boarding-off-boarding-app && npm run build"
-  functions = "dist/functions" 
-[[redirects]]
-    from = "/api/*"
-    to = "/.netlify/functions/:splat"
-    status = 200
+  command = "npm run build"
+  functions = "function-build"
+  publish = "build"
+
+[redirects]
+  to = "/.netlify/functions/:splat"
+  from = "/api/*"
+  status = 200
+  force = true

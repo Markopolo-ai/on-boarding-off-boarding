@@ -36,10 +36,15 @@ class EmployeeList extends Component {
     
     // // }
 
-    handleClick = (e) => {
+    handleClick = (email) => {
         axios({
-            method: 'get', url: 'https://localhost:3000/auth/',
-            header: {"Content-Type": "application/json", 'Access-Control-Allow-Origin': 'https://localhost:4000/*'}
+            method: 'get', url: 'https://localhost:9000/api/index/',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+            },
+            query:{email}
         }).then(res => {
             console.log("res::::", res);
         });
@@ -83,7 +88,7 @@ class EmployeeList extends Component {
                                             <td> {employee.email}</td>
                                             <td> {employee.phoneNumber}</td>
                                             <td> {employee.hasAccess ? 'Authorized': 'Not authorized'} </td>
-                                            <td><a href="https://github.com/login/oauth/authorize?client_id=Iv1.df166de8fe525bb5" onClick={(e) => this.handleClick()}>Markopolo.ai github</a></td>
+                                            <td><a href="#" onClick={(e) => this.handleClick(employee.email)}>Markopolo.ai github</a></td>
                                             <td><a className={employee.hasAccess ? 'revoke-button': 'allow-button'} href="#" onClick={(e) => revokeEmployee(employee.id)}>{employee.hasAccess ? 'Revoke': 'Allow access'}</a> </td>
                                         </tr>
                                     ) : null}
