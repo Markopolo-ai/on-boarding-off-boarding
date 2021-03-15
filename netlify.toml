@@ -4,7 +4,7 @@
   functions = "function-build"
   publish = "build"
 
-[redirects]
+[[redirects]]
   to = "/.netlify/functions/:splat"
   from = "/api/*"
   status = 200
