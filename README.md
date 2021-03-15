@@ -1,44 +1,70 @@
-Hello candidate,
+# Getting Started with Create React App
 
-You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-How will it work?
+## Available Scripts
 
-New teammmember provides the manager with their email id. The manager will input that email id into the web app and 
-the teammember will get access to the organization's Github, Trello, folders in Google Drive, Slack. In similar way,
-when the teammember leaves, with one click from the manager, their access will be revoked.
+In the project directory, you can run:
 
-What you need to deliver
+### `npm start`
 
-- [ ] UI design on Figma
-- [ ] Frontend of the webapp using React-Redux
-- [ ] (if needed) Backend in serverless framework
-- [ ] Dockerize the app
-- [ ] Make a pull request
-- [ ] Documentation of the entire webapp
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-If you have questions, please state your assumptions on the documentation and proceed with development.
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-Here are some FAQs regarding the coding challenge:
+### `npm test`
 
-## Do I need to implement all the third-party applications?
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Not at all. Pick one, any one of Github, Slack, Drive. Or you can choose any third-party application as you like. We just want to see how comfortable you're at working with third-party APIs.
+### `npm run build`
 
-## Should I implement the application in serverless or docker?
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Actually, both. How? Write two microservices. A partial backend micro-service in serverless and another partial service in docker. Of course they will need to communicate with each other. We understand that this makes the architecture overly complicated. But we are trying to understand your proficiency with microservices. If you don't get the time to implement both, choose serverless.
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-## Do I need to submit a fully functional code?
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-We understand that the time provided to you is very limited. So we don't expect you to make a picture perfect submission. However, please make sure to meticulously document your plans on how you'll implement the code.
+### `npm run eject`
 
-## What is the assessment criteria?
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-We want to see that you are comfortable working with - design tools (Figma), git, microservices, React, third-party APIs, code quality and documentation.
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## I have further questions. Who should I ask?
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-To keep the challenge unbiased, we don't answer questions during the challenge. If you face any confusion, please write down your assumptions in the documentation and proceed accordingly.
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-Happy hacking!
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
