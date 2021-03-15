@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Link} from "react-router-dom";
 import Dropdown from '../common-component/dropdown.jsx';
 
@@ -7,15 +7,7 @@ import './header.scss';
 
 
 const Header = ({search, activepage, selectActivePage}) => {
-    const [showSerach, setShowSearch] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
-
-    const cookie = document.cookie;
-
-    const handleChange = (e) => {
-        console.log(e.target.value);
-        search(e.target.value)
-      }
   
     return (
         <div className="header-container col-md-12 col-xs-12">

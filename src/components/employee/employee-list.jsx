@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import axios from 'axios';
 
@@ -88,8 +87,8 @@ class EmployeeList extends Component {
                                             <td> {employee.email}</td>
                                             <td> {employee.phoneNumber}</td>
                                             <td> {employee.hasAccess ? 'Authorized': 'Not authorized'} </td>
-                                            <td><a href="#" onClick={(e) => this.handleClick(employee.email)}>Markopolo.ai github</a></td>
-                                            <td><a className={employee.hasAccess ? 'revoke-button': 'allow-button'} href="#" onClick={(e) => revokeEmployee(employee.id)}>{employee.hasAccess ? 'Revoke': 'Allow access'}</a> </td>
+                                            <td><button onClick={(e) => this.handleClick(employee.email)}>Markopolo.ai github</button></td>
+                                            <td><button className={employee.hasAccess ? 'revoke-button': 'allow-button'} onClick={(e) => revokeEmployee(employee.id)}>{employee.hasAccess ? 'Revoke': 'Allow access'}</button> </td>
                                         </tr>
                                     ) : null}
                                 </tbody>
