@@ -1,0 +1,50 @@
+version: "3.3"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c " python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - 8000:8000
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+  redis:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379
+    depends_on:
+      - backend
+
+  celery:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "celery -A adminsite worker -l info -B --without-gossip --without-mingle -P solo"
+    depends_on: 
+      - redis
+      
+  queue:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "python consumer.py"
+    depends_on:
+      - db
+      
+
+  db:
+    image: mysql:5.7.22
+    restart: always
+    environment:
+      MYSQL_DATABASE: admin
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+    # volumes:
+    #   - .dbdata:/var/lib/mysql
+    ports:
+      - 33866:3306
