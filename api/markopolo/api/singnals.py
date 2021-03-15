@@ -14,7 +14,9 @@ def handel_user_create(sender,instance,created,**kwargs):
         hear if success change flag to 1
         
         """
-        instance.git_access = 1 
+        instance.git_access   = 1 
+        instance.slack_access = 1
+        instance.drive_access = 1
         instance.save()
         print('user created ')
 

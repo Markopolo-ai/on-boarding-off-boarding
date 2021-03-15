@@ -5,36 +5,15 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import permissions ,viewsets
+from api.models import MemberModel 
+from api.serializers import MemberSerializer
 
 
-class HelloView(APIView):
-    permission_classes = (IsAuthenticated,)
+    
+class MemberViewSet(viewsets.ModelViewSet):
+    queryset = MemberModel.objects.all()
+    serializer_class = MemberSerializer
+    permission_classes  = [IsAuthenticated] 
 
-    def get(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
-
-
-class MemberViews(APIView):
-    permission_classes = (IsAuthenticated,)
-
-    def get(self,request):
-        content = {'message':'all'}
-        return Response(content)
-        # create member 
-
-    def post(self,request):
-        content = {'message':'created'}
-        return Response(content)
-        # create member 
-
-    def put(self,request):
-        content = {'message':'update'}
-        return Response(content)
-        # create member 
-
-    def delete(self,request):
-        content = {'message':'deleted'}
-        return Response(content)
-
-        # create member 
+    # todo : custom method 

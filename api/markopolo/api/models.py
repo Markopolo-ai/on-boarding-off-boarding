@@ -10,20 +10,15 @@ class MemberModel(models.Model):
     drive_access = models.BooleanField(default=False) 
     created_at   = models.DateTimeField(auto_now_add=True)
     updated_at   = models.DateTimeField(auto_now=True)
+
+
+
+
+
+
+
     
 
 
  
 
-# from django.dispatch import receiver 
-
-# # from .models import MemberModel  
-
-# @receiver(post_save,sender=MemberModel,weak=False)
-# def handel_user_create(sender,instance,created,**kwargs):
-#     if created:
-#         instance.git_access = 1 
-#         instance.save()
-#         print('user created ')
-
-# post_save.connect(handel_user_create,sender=MemberModel)
