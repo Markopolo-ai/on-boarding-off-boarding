@@ -10,95 +10,69 @@ import {setEmployeeList, revokeEmployeeAccess, showAddModal} from '../../redux/a
 
 import './employee-list.scss';
 
-
-// const useFetching = setEmployeeList => {
-//     useEffect( () => {
-//         setEmployeeList();
-//     })
-//   }
-
 class EmployeeList extends Component {
-
     
-    // sortColumn = async (columnData, filterKey, rowlists) => {
-        
-    //     if(columnData && columnData.sortable) {
-    
-    //         // const {filterRows, rows} = this.props;
-    //         // const filteredData = await getFilteredList(filterKey, "", rowlists);
-    //         // const reOrderResponse = await reOrderedList(rows);
-    
-    //         // filterRows(filteredData, reOrderResponse);
-    
-    //         // this.forceUpdate();
-    //     }
-    
-    // // }
-
-    handleClick = (email) => {
-        axios({
-            method: 'get', url: 'https://localhost:9000/api/index/',
+    handleClick = async (email) => {
+        let functionRes = await axios({
+            method: 'get', url: 'http://localhost:9000/.netlify/functions/index',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
             },
-            query:{email}
+            params:{email}
         }).then(res => {
-            console.log("res::::", res);
+            console.log("res:::", res);
         });
+        console.log("functionRes:::", functionRes);
+        
     }
     componentDidMount() {
         let {setEmployeeList} = this.props;
 
         setEmployeeList();
     }
-  
-    
-   
-        
-        render() {
-            const {employees,showModal, showEmployeeModal,revokeEmployee} = this.props;
-            console.log('employees1', this.props);
-            console.log('showModal', showModal);
-            return (
-                <div className="list-section">
-                    <div className="list-header col-md-12">
-                        <div className="list-text col-md-11">All Employees</div>
-                        <div className="list-action col-md-2"><button type="button" onClick={() => showEmployeeModal()} className="add-button" data-toggle="modal" data-target="#addEmployee"><i className="fa fa-plus"> </i>Add employee </button></div>
-                    </div>
-                    <div className="list-table-view">
-                            <table className="list-table">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Phone number</th>
-                                    <th>Status</th>
-                                    <th>Organization Github</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                                <tbody className ="rows">
-                                {console.log(employees)}
-                                    {employees && employees.length > 0 ? employees.map( employee => 
-                                        <tr key={employee.id}>
-                                            <td> {employee.firstName} {employee.lastName}</td>
-                                            <td> {employee.email}</td>
-                                            <td> {employee.phoneNumber}</td>
-                                            <td> {employee.hasAccess ? 'Authorized': 'Not authorized'} </td>
-                                            <td><button onClick={(e) => this.handleClick(employee.email)}>Markopolo.ai github</button></td>
-                                            <td><button className={employee.hasAccess ? 'revoke-button': 'allow-button'} onClick={(e) => revokeEmployee(employee.id)}>{employee.hasAccess ? 'Revoke': 'Allow access'}</button> </td>
-                                        </tr>
-                                    ) : null}
-                                </tbody>
-                            
-                        </table> 
-                    </div>
-                    {showModal ? <AddEmployee /> : null}
+    render() {
+        const {employees,showModal, showEmployeeModal,revokeEmployee} = this.props;
+
+        return (
+            <div className="list-section">
+                <div className="list-header col-md-12">
+                    <div className="list-text col-md-11">All Employees</div>
+                    <div className="list-action col-md-2"><button type="button" onClick={() => showEmployeeModal()} className="add-button" data-toggle="modal" data-target="#addEmployee"><i className="fa fa-plus"> </i>Add employee </button></div>
                 </div>
-            )
-        }
+                <div className="list-table-view">
+                        <table className="list-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone number</th>
+                                <th>Status</th>
+                                <th>Organization Github</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                            <tbody className ="rows">
+                                {employees && employees.length > 0 ? employees.map( employee => 
+                                    <tr key={employee.id}>
+                                        <td> {employee.firstName} {employee.lastName}</td>
+                                        <td> {employee.email}</td>
+                                        <td> {employee.phoneNumber}</td>
+                                        <td> {employee.hasAccess ? 'Authorized': 'Not authorized'} </td>
+                                        {/* <td><a href="https://github.com/markopolo-ai-test">Markopolo.ai github</a></td> */}
+                                        <td><button onClick={(e) => this.handleClick()}>Markopolo.ai github</button></td>
+                                        <td><button className={employee.hasAccess ? 'revoke-button': 'allow-button'} onClick={(e) => revokeEmployee(employee.id)}>{employee.hasAccess ? 'Revoke': 'Allow access'}</button> </td>
+                                    </tr>
+                                ) : null}
+                            </tbody>
+                        
+                    </table> 
+                </div>
+                {showModal ? <AddEmployee /> : null}
+            </div>
+        )
+    }
 }
 
 // const mapStateToProps = state => ({
