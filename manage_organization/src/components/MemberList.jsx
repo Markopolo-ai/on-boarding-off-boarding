@@ -16,13 +16,14 @@ import {
   TableCaption,
   Avatar,
 } from "@chakra-ui/react";
+import config from "../config.js"
 
 const MemberList = () => {
   const [members, setMember] = useState([]);
 
   const getMemberList = async () => {
     const octokit = new Octokit({
-      auth: `f84b8c93e3c592709b1b926ab8f2d842db491336`,
+      auth: config.GITHUB_KEY,
     });
 
     try {

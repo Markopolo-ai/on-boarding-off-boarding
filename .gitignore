@@ -5,6 +5,8 @@
 /manage_organization/.pnp
 /manage_organization/.pnp.js
 
+/manage_organization/src/config.js
+
 # testing
 /manage_organization/coverage
 
