@@ -11,13 +11,21 @@ console.log("URL: ", URL);
 
 exports.handler = async function(event, context, callback) {
 
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'
+      };
     //to use the connection between function call
     context.callbackWaitsForEmptyEventLoop = false;
 
-    return startProcess().then(res => {
+    let startPros = await startProcess().then(res => {
         console.log("res: ", res);
+        res = {...res,headers}
       return  res;
     }).catch(error => error);
+    
+    return startPros;
 }
 
 const startProcess = async function() {

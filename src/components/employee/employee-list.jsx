@@ -11,7 +11,7 @@ import {setEmployeeList, revokeEmployeeAccess, showAddModal} from '../../redux/a
 import './employee-list.scss';
 
 class EmployeeList extends Component {
-    
+
     handleClick = async (email) => {
         let functionRes = await axios({
             method: 'get', url: 'http://localhost:9000/.netlify/functions/index',
@@ -27,13 +27,36 @@ class EmployeeList extends Component {
         console.log("functionRes:::", functionRes);
         
     }
+    revokeEmployee= async (email, id) => {
+        const {revokeEmployee} = this.props;
+
+        let orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test",
+            baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';
+
+        await axios({
+            method: "GET",
+            url: `${baseUrl}/search/users`,
+            header: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+              },
+            params:{q: email}
+        }).then(res => {
+            console.log("revoke access: ", res);
+            if(res && res.data) {
+
+                revokeEmployee(id);
+            }
+        })
+
+    }
     componentDidMount() {
         let {setEmployeeList} = this.props;
 
         setEmployeeList();
     }
     render() {
-        const {employees,showModal, showEmployeeModal,revokeEmployee} = this.props;
+        const {employees,showModal, showEmployeeModal} = this.props;
 
         return (
             <div className="list-section">
@@ -62,7 +85,7 @@ class EmployeeList extends Component {
                                         <td> {employee.hasAccess ? 'Authorized': 'Not authorized'} </td>
                                         {/* <td><a href="https://github.com/markopolo-ai-test">Markopolo.ai github</a></td> */}
                                         <td><button onClick={(e) => this.handleClick()}>Markopolo.ai github</button></td>
-                                        <td><button className={employee.hasAccess ? 'revoke-button': 'allow-button'} onClick={(e) => revokeEmployee(employee.id)}>{employee.hasAccess ? 'Revoke': 'Allow access'}</button> </td>
+                                        <td><button className={employee.hasAccess ? 'revoke-button': 'allow-button'} onClick={(e) => this.revokeEmployee(employee.email,employee.id)}>{employee.hasAccess ? 'Revoke': 'Allow access'}</button> </td>
                                     </tr>
                                 ) : null}
                             </tbody>
