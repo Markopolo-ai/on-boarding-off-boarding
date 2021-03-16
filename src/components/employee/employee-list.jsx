@@ -28,28 +28,43 @@ class EmployeeList extends Component {
         
     }
     revokeEmployee= async (email, id) => {
-        const {revokeEmployee} = this.props;
+        try{
+            const {revokeEmployee} = this.props;
+            const baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';     
+    
+            let githubUsers = await axios({
+                method: "GET",
+                url: `${baseUrl}/search/users`,
+                header: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json',
+                  },
+                params:{q: email}
+            }),
+            userName = githubUsers.then(res => {
+                if(res?.data?.items) {
+                    return res.data.items[0]?.login;
+                }
+            });
 
-        let baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';
-        //  orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test",
-           
+            console.log("userName: ", userName);
+            if(userName) {
+                const orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test";
 
-        await axios({
-            method: "GET",
-            url: `${baseUrl}/search/users`,
-            header: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-              },
-            params:{q: email}
-        }).then(res => {
-            console.log("revoke access: ", res);
-            if(res && res.data) {
-
-                revokeEmployee(id);
+                let hasRevoked = await axios({
+                    method: "GET",
+                    url: `${baseUrl}/orgs/${orgName}/members/${userName}`,
+                    header: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json',
+                      },
+                    params:{q: email}
+                }),
+                if(hasRevoked) revokeEmployee(id);
             }
-        })
-
+        } catch(e) {
+            console.log("error occurred: ", e);   
+         }
     }
     componentDidMount() {
         let {setEmployeeList} = this.props;
