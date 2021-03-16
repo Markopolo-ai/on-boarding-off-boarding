@@ -32,7 +32,7 @@ class EmployeeList extends Component {
             const {revokeEmployee} = this.props;
             const baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';     
     
-            let githubUsers = await axios({
+            let userName = await axios({
                 method: "GET",
                 url: `${baseUrl}/search/users`,
                 header: {
@@ -40,8 +40,7 @@ class EmployeeList extends Component {
                     'Content-Type': 'application/json',
                   },
                 params:{q: email}
-            }),
-            userName = githubUsers.then(res => {
+            }).then(res => {
                 if(res?.data?.items) {
                     return res.data.items[0]?.login;
                 }
