@@ -1,44 +1,48 @@
-Hello candidate,
+## Table of context
 
-You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
+- [Table of context](#table-of-context)
+- [About Application <a name="application"></a>](#about-application-)
+- [UI Design <a name="ui_design"></a>](#ui-design-)
+- [Frontend <a name="frontend"></a>](#frontend-)
+- [Backend <a name="backend"></a>](#backend-)
+- [Database <a name="database"></a>](#database-)
+- [3rd Party Apis <a name="third_party"></a>](#3rd-party-apis-)
 
-How will it work?
+## About Application <a name="application"></a>
+This is an employee onbarding app where you can add new employees and give/remove access from project trello board.
 
-New teammmember provides the manager with their email id. The manager will input that email id into the web app and 
-the teammember will get access to the organization's Github, Trello, folders in Google Drive, Slack. In similar way,
-when the teammember leaves, with one click from the manager, their access will be revoked.
 
-What you need to deliver
+## UI Design <a name="ui_design"></a>
 
-- [ ] UI design on Figma
-- [ ] Frontend of the webapp using React-Redux
-- [ ] (if needed) Backend in serverless framework
-- [ ] Dockerize the app
-- [ ] Make a pull request
-- [ ] Documentation of the entire webapp
+The application UI was disigned with **Figma**.
+Design URL: https://www.figma.com/proto/m0CHzlraSMfbf3IOeOSVAU/Untitled?node-id=0%3A3&scaling=min-zoom.
 
-If you have questions, please state your assumptions on the documentation and proceed with development.
+## Frontend <a name="frontend"></a>
+The application Frontend mainly consists 2 pars. A Dialog to add new employees and a Table where you can view all your employees and controll their access to the company Trello board access.
+- Tech Stack - **Typescript, ReactJS, NextJS, ChakraUI**
+- Features
+	- *Adding New Member* -  `After submitting the form the fontend makes POST request to users & app service to store the form data.`
+	- *Showing Member List* - `Homepage fetces data from users_access service and showes them in the employee table.`
 
-Here are some FAQs regarding the coding challenge:
+## Backend <a name="backend"></a>
+The backend is build with **NodeJS**, **ExpressJS** based on **Microservice** architecture and **REST** Apis. It has in total 4 services which include 3 dockerized services and 1 serverless event bus.
 
-## Do I need to implement all the third-party applications?
+<ins>**Dockerized Services:**</ins>
+|Service         |PORT                    |Description                       
+|----------------|-------------------------------|-----------------------------|
+|Apps 			 |5000            |Handling Trello Accces, Storing & Fetching Apps            |
+|Users           |5001            |Storing & Fetching Users            |
+|Query           |5002			  |Handling Users & Apps Combined Quiries|
 
-Not at all. Pick one, any one of Github, Slack, Drive. Or you can choose any third-party application as you like. We just want to see how comfortable you're at working with third-party APIs.
+<ins>**Serverless Services:**</ins>
+|Service         |PORT            |Framwwork        |Description                       
+|----------------|----------------|---------------|-----------------------------|
+|Event Bus 			|8888         |[Netlify Lambda](https://github.com/netlify/netlify-lambda)          |Handling data passing to microservices.            |
 
-## Should I implement the application in serverless or docker?
+## Database <a name="database"></a>
+All data are stored in **Javascript objects** located in relevent services. 
 
-Actually, both. How? Write two microservices. A partial backend micro-service in serverless and another partial service in docker. Of course they will need to communicate with each other. We understand that this makes the architecture overly complicated. But we are trying to understand your proficiency with microservices. If you don't get the time to implement both, choose serverless.
-
-## Do I need to submit a fully functional code?
-
-We understand that the time provided to you is very limited. So we don't expect you to make a picture perfect submission. However, please make sure to meticulously document your plans on how you'll implement the code.
-
-## What is the assessment criteria?
-
-We want to see that you are comfortable working with - design tools (Figma), git, microservices, React, third-party APIs, code quality and documentation.
-
-## I have further questions. Who should I ask?
-
-To keep the challenge unbiased, we don't answer questions during the challenge. If you face any confusion, please write down your assumptions in the documentation and proceed accordingly.
-
-Happy hacking!
+## 3rd Party Apis <a name="third_party"></a>
+The application uses [Trello](https://trello.com/) as a third party service. So you will need trello API_KEY, ACESS_TOKEN and the project BOARD_ID to make the app work. 
+As reference a `.env.example` is provided in [microservice_backend](https://github.com/DevArifHossain/employee-orbarding-app/tree/develop/microservice-backend/apps) directory.
+Visit [https://trello.com/app-key](https://trello.com/app-key) to get your key & token.
