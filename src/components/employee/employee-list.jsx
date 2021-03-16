@@ -13,7 +13,7 @@ import './employee-list.scss';
 const getUserName = email => {
 
     const baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';   
-    
+
     return new Promise((resolve, reject) => {
         axios({
             method: "GET",
@@ -24,6 +24,9 @@ const getUserName = email => {
               },
             params:{q: email}
         }).then(res => {
+            console.log("res.data: ", res.data);
+            console.log("res.data.items: ",res.data.items);
+
             if(res?.data?.items) {
                 resolve(res.data.items[0]?.login);
             }
