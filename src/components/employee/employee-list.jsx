@@ -51,7 +51,7 @@ class EmployeeList extends Component {
             if(userName) {
                 const orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test";
 
-                let hasRevoked = await axios({
+                let revokedInfo = await axios({
                     method: "GET",
                     url: `${baseUrl}/orgs/${orgName}/members/${userName}`,
                     header: {
@@ -60,6 +60,12 @@ class EmployeeList extends Component {
                       },
                     params:{q: email}
                 }),
+                hasRevoked =  revokedInfo.then(res => {
+                    if(res?.data?.items) {
+                        return true;
+                    }
+                });;
+
                 if(hasRevoked) revokeEmployee(id);
             }
         } catch(e) {
