@@ -1,15 +1,17 @@
 
 
+# Manage Organization
+
 ![ezgif-7-7fecaf96f958](https://user-images.githubusercontent.com/60034035/111368066-9a44ae80-86bf-11eb-91d0-b15673c9dc46.gif)
 
-## Manage Organization
 
-This a organization manage website. Useing this admin can easly add or remove member organization platform  (Github, Trello, Google Drive, Slack) which oranization use for work.
+This is a `Manage Organization` website. Using this admin can easily add or remove member organization platforms (Github, Trello, Google Drive, Slack) which they use for work.
+
+:link: [Live Preview](https://on-boarding-off-boarding.vercel.app/)
 
 ## How it works.
 
-For add member to orgization need to know member email address through this website sent invitation for join the exsisting platform organization use.
-If any member leave then admin can easly remove the member from the platform.
+Through this website, the admin can send an invitation to join the existing platform organization use. You need to know the email address of the member to add member organization. If a member leaves, the administrator can easily remove the member from the platform.
 
 ## Support Platform
 - [x] Github
