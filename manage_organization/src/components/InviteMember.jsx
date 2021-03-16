@@ -14,15 +14,15 @@ import {
   AlertTitle,
   AlertDescription,
   Flex,
-  SimpleGrid
+  SimpleGrid,
 } from "@chakra-ui/react";
 
 import { useState } from "react";
 import { Octokit } from "@octokit/core";
 
-import NotificationAlert from "./chakra/NotificationAlert"
+import NotificationAlert from "./chakra/NotificationAlert";
 
-import config from "../config.js"
+import {config} from "../config.js";
 
 const InviteMember = () => {
   const [email, setEmail] = useState({
@@ -72,30 +72,42 @@ const InviteMember = () => {
         minH="100%"
       ></Box>
 
-
-      <SimpleGrid columns={[1,1,3]} spacing="10px" mt="-30%">
-        <Box  bg="white" p="5" width={["100%", "80%", "100%"]}  margin="auto"> </Box>
-        <Box  bg="white" p="5" width={["100%", "80%", "100%"]} boxShadow="base" margin="auto"> 
-        {showAlert ? (
-          <NotificationAlert alertType="success" alertText="Invite Sent Successfully" /> 
-        ) : (
-          <h1></h1>
-        )}
-        <FormControl id="email">
-          <FormLabel>Email address</FormLabel>
-          <Input type="email" onChange={handleChange} />
-          <FormHelperText>We'll never share your email.</FormHelperText>
-        </FormControl>
-        <Button
-          mt="3"
-          onClick={handelClick}
-          colorScheme="teal"
-          variant="outline"
-        >
-          Invite Member
-        </Button>
+      <SimpleGrid columns={[1, 1, 3]} spacing="10px" mt="-30%">
+        <Box bg="white" p="5" width={["100%", "80%", "100%"]} margin="auto">
+          {" "}
         </Box>
-        <Box  bg="white" p="5" width={["100%", "80%", "100%"]} margin="auto"> </Box>
+        <Box
+          bg="white"
+          p="5"
+          width={["100%", "80%", "100%"]}
+          boxShadow="base"
+          margin="auto"
+        >
+          {showAlert ? (
+            <NotificationAlert
+              alertType="success"
+              alertText="Invite Sent Successfully"
+            />
+          ) : (
+            <h1></h1>
+          )}
+          <FormControl id="email">
+            <FormLabel>Email address</FormLabel>
+            <Input type="email" onChange={handleChange} />
+            <FormHelperText>We'll never share your email.</FormHelperText>
+          </FormControl>
+          <Button
+            mt="3"
+            onClick={handelClick}
+            colorScheme="teal"
+            variant="outline"
+          >
+            Invite Member
+          </Button>
+        </Box>
+        <Box bg="white" p="5" width={["100%", "80%", "100%"]} margin="auto">
+          {" "}
+        </Box>
       </SimpleGrid>
     </div>
   );

@@ -16,7 +16,7 @@ import {
   TableCaption,
   Avatar,
 } from "@chakra-ui/react";
-import config from "../config.js"
+import {config} from "../config.js"
 
 const MemberList = () => {
   const [members, setMember] = useState([]);
