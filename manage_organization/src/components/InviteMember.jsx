@@ -21,6 +21,7 @@ import { useState } from "react";
 import { Octokit } from "@octokit/core";
 
 import NotificationAlert from "./chakra/NotificationAlert"
+import config from "../config.js"
 
 const InviteMember = () => {
   const [email, setEmail] = useState({
@@ -41,7 +42,7 @@ const InviteMember = () => {
   const inviteMember = async (memberEmail) => {
     try {
       const octokit = new Octokit({
-        auth: `f84b8c93e3c592709b1b926ab8f2d842db491336`,
+        auth: config.GITHUB_KEY,
       });
 
       const response = await octokit.request(

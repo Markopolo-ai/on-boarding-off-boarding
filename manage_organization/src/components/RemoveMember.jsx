@@ -20,6 +20,8 @@ import { useState } from "react";
 import { Octokit } from "@octokit/core";
 import NotificationAlert from "./chakra/NotificationAlert"
 
+import config from "../config.js"
+
 const RemoveMember = () => {
   const [username, setUsername] = useState({
     username: "",
@@ -38,7 +40,7 @@ const RemoveMember = () => {
 
   const removeMember = async (memberUsername) => {
     const octokit = new Octokit({
-      auth: `f84b8c93e3c592709b1b926ab8f2d842db491336`,
+      auth: config.GITHUB_KEY,
     });
 
     try {
