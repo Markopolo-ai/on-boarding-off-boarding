@@ -10,3 +10,11 @@
     margin-top: 4%;
     margin-bottom: 22px;
 }
+.fa {
+    margin-left:5px;
+    opacity:50% ;
+}
+.fa:hover{
+    font-size: 18px;
+    opacity: 100%;
+}

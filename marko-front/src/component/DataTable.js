@@ -1,62 +1,57 @@
 
+import React , {useEffect} from 'react' ;
+import { useSelector , useDispatch } from "react-redux" ;
+import { useHistory } from 'react-router-dom' ;
+import { APIService } from '../services/APIService' ;
+
 
 export default function DataTable() {
+
+    const dispatch = useDispatch() ;
+
+    const history  = useHistory()  ;
+
+    let members = useSelector( state => state.member.members.results )  || [] 
+
+    useEffect( () => { APIService.getMembers(dispatch) } , [])
+
+    const removeMember = (id) => {
+         APIService.removeMember(dispatch,id)
+    }
+
     return (
         <div className="app-data-table" >
-                <table class="table">
+                <table className="table">
                 <thead>
                     <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Date Added</th>
-                    <th scope="col">Action</th>
+                        <th scope="col">#</th>
+                        <th scope="col">Email</th>
+                        {/* <th scope="col">Date Added</th> */}
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
-                    <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    </tr>
+                    
+                    {   
+                        members.map( (member,key) => (
+                            // <div>  {JSON.stringify(member)} </div>
+                            <tr key={key} >
+                                <td> {member.id} </td>
+                                <td> {member.email} </td>
+                                <td> 
+                                    <i className="fa fa-trash" 
+                                       onClick={()=> removeMember(member.id)} >
+                                    </i>
+                                    <i className="fa fa-eye"
+                                       onClick={ () => history.push(`/detail/${member.id}`) } ></i>
+                                </td>
+                            </tr>
+                        ) )
+                    }
+                    
                 </tbody>
-                </table>           
+                </table>    
+                
         </div>
     ) ;
 }

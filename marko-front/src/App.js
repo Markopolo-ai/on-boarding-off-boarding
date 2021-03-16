@@ -8,17 +8,24 @@ import {
   Link
 } from "react-router-dom";
 
-import Test from './component/test' ;
+import { useEffect } from 'react'  
+import { useDispatch } from 'react-redux'
+
+// import Test from './component/test' ;
 import Login from "./pages/Login"   ;
 import Dashboard from "./pages/Dashboard" ;
 import Detail from "./pages/Detail" ; 
 import PublicRoute from './component/PublicRoute' ;
 import PrivateRoute from './component/PrivateRoute' ;
 
+import { AuthService } from './services/AuthService'
+
 function App() {
 
-  // get info from localstorage to determine if loggedin 
-  // useEffect 
+  const dispatch = useDispatch() 
+  
+  useEffect( () => { AuthService.check(dispatch) })
+
   return (
     
     <Router>

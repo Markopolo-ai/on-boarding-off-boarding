@@ -1,15 +1,31 @@
 
+import {useSelector,useDispatch} from 'react-redux'
+
 import '../css/pagination.css' ;
 
+import {APIService} from '../services/APIService' ;
+
 export default function Pagination() {
+    
+    const dispatch    = useDispatch() ;
+    
+    const pagination  = useSelector( state => state.member.members ) ;
+
+    const gotoPage    = (page) => APIService.paginate(dispatch,page) ;
+
     return (
+        
         <div className="app-pagination">
-            {/* this is pagination   */}
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
+
+            {
+                [ ...Array( Math.ceil( (pagination.count / 4) || 0 ) ) ].map( (v,idx)=> {
+                    return (
+
+                        <div onClick={ () => gotoPage(idx) } > { idx + 1 } </div>
+                    )
+                })
+            }
+
         </div>
     );
 }

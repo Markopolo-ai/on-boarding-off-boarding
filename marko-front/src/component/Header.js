@@ -2,14 +2,15 @@
 import { useSelector , useDispatch } from "react-redux" ;
 import '../css/header.css'
 
+import {AuthService} from '../services/AuthService'  ;
+
 export default function Header() {
     
     const dispatch = useDispatch() ;
-    
-    const loggedin = useSelector ( state => state.counter.loggedin )  ;
-    
+        
     const logout = () => {
-        dispatch( { type:'LOGIN' , payload: { 'loggedin' : false } } ) ;
+        
+        AuthService.logout(dispatch)
     };
     
     return (

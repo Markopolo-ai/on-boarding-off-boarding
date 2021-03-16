@@ -4,29 +4,58 @@ import axios from 'axios'
 export const AuthService = {
 
     login ,
-    logout 
+    logout ,
+    check   ,
 }
 
 
-function login(username , password) {
+function login(dispatch,username , password) {
 
     let postData = {
         username ,
         password ,
     }
 
-    axios.post(`http://127.0.0.1:8000/api/login`,postData).then( response => {
-        
-        localStorage.setItem('tokens',JSON.stringify(response.data))
-        console.log(response)
+    return new Promise( (resolve,reject) =>{
 
-    }).catch( error => {
-        console.log(error) 
-        // show alert 
-    })
+        axios.post(`http://127.0.0.1:8000/api/login`,postData).then( response => {
+           
+            let data = {...response.data  ,'time' : new Date  }
+        
+            localStorage.setItem('tokens',JSON.stringify(data))
+            
+            axios.defaults.headers.common['Authorization'] = `Bearer ${data.access}`;
+            
+            dispatch({type:'LOGIN_USER' })
+            
+            resolve()
+        
+        }).catch( error => reject(error) )
+
+    } )
+    
+}
+
+function logout(dispatch){
+
+    axios.defaults.headers.common['Authorization'] = ''
+    
+    localStorage.setItem('tokens','')
+
+    dispatch( { type:'LOGOUT_USER' } ) ;
 
 }
 
-function logout(){
-    console.log(`user loggedout`)
+
+function check(dispatch) {
+
+    let data = localStorage.getItem('tokens') && JSON.parse( localStorage.getItem('tokens') )
+ 
+    if( data && data.access ) {
+
+        axios.defaults.headers.common['Authorization'] = `Bearer ${data.access}`;
+        
+        dispatch( {type : 'LOGIN_USER'  } ) ;
+    }
+
 }

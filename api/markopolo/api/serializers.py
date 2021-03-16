@@ -5,4 +5,4 @@ class MemberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model  = MemberModel
-        fields = ['id','email','git_access','slack_access','drive_access','trello_access','trello_id'] 
+        fields = ['id','email','git_access','slack_access','drive_access','trello_access','trello_id',] 
