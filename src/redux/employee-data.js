@@ -9,10 +9,10 @@ export const data = [
     },
     {
         id: 2,
-        firstName: 'Mrs. Shirin',
-        lastName: 'Akter',
-        email: 'shirin641@gmail.com',
+        firstName: 'Md. Anisul',
+        lastName: 'Hoque',
+        email: 'testmail@gmail.com',
         hasAccess: true,
-        phoneNumber: '01723569384'
+        phoneNumber: '01721111111'
     },
 ]
