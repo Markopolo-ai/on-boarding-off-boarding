@@ -1,0 +1,16 @@
+{
+  "name": "serverless-functions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node lambda/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "netlify-lambda": "^2.0.3"
+  }
+}
