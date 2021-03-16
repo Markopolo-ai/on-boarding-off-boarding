@@ -1,21 +1,81 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import {Route} from 'react-router-dom';
-import Welcome from './components/Welcome';
+import axios from 'axios';
 
+import {updateLoginStatus} from './actions';
+import Login from './components/Login';
+import Dashboard from './components/Dashboard';
+
+/**
+ * This is the entry point of the application. Upon entry, it
+ * checks whether the current user is logged in or not. If not
+ * logged in, it routes the user to the login page. Otherwise,
+ * it routes the user to the admin dashboard.
+ */
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-      <Route exact path="/" render={() => (
-          <div>
-              <h1>Please select the platforms below</h1>
-              <Welcome />
-          </div>
-      )}/>
-      <Route path="/authentication" component={Welcome}/>
-      </div>
-    );
-  }
+    /**
+    * Gets the current session's login status and sets it as the
+    * loggedIn variable in the application's redux store.
+    * 
+    * TODO: Gracefully handle error!
+    */
+    refreshLoginStatus = () => {
+        let api_url = "http://localhost:80/api/admins/login";
+        axios({
+            method: 'get',
+            url: api_url
+        })
+        .then(resp => {
+            this.props.updateLoginStatus({loggedIn: resp.data.loggedIn});
+        })
+        .catch(error => console.log(error));
+    }
+
+    /**
+     * After mounting the component, it checks whether the user is
+     * logged in or not.
+     */
+    componentDidMount() {
+        this.refreshLoginStatus();
+    }
+
+    /**
+     * Based on the current redux state of loggedIn variable, it either
+     * returns the login view, or leads to the admin dashboard for the
+     * root url.
+     */
+    render() {
+        if (!this.props.loggedIn) {
+            return (
+                <Route exact path="/" render={() => (
+                    <Login />
+                )}/>
+            )
+        } else {
+            return (
+                <Route exact path="/" render={() => (
+                    <Dashboard />
+                )}/>
+            )
+        }
+   }
 }
 
-export default App;
+// This component requires only the loggedIn state from the global
+// redux store.
+function mapStateToProps({login, admin}) {
+    return {
+        loggedIn: login.loggedIn
+    }
+}
+
+// This component requires only the UPDATE_LOGIN_STATUS action to
+// modify loggedIn state of the current user.
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateLoginStatus: (data) => dispatch(updateLoginStatus(data))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
