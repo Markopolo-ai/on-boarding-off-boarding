@@ -24,14 +24,34 @@ const getUserName = email => {
               },
             params:{q: email}
         }).then(res => {
-            console.log("res.data: ", res.data);
-            console.log("res.data.items: ",res.data.items);
-
             if(res?.data?.items) {
                 resolve(res.data.items[0]?.login);
             }
         }).catch(e=>  {
            reject("Error occurred: ",e);
+        });
+    })
+};
+
+const reevokeEmployee = (userName) => {
+    const orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test";
+    const baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';   
+
+    return new Promise((resolve, reject) => {
+        axios({
+            method: "DELETE",
+            url: `${baseUrl}/orgs/${orgName}/members/${userName}`,
+            header: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            },
+        }).then(res => {
+            if(res?.data?.items) {
+                resolve(true);
+            }
+        }).catch( e => {
+            console.log("Error occured: ", e);
+            reject(e)
         });
     })
 }
@@ -50,7 +70,6 @@ class EmployeeList extends Component {
         }).then(res => {
             console.log("res:::", res);
         });
-        console.log("functionRes:::", functionRes);
         
     }
     revokeEmployee= async (email, id) => {
@@ -59,27 +78,11 @@ class EmployeeList extends Component {
             const baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';     
     
             let userName = await getUserName(email);
-            console.log("userName: ", userName);
 
             if(userName) {
-                const orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test";
+                let revokedEmployee = reevokeEmployee(userName);
 
-                let revokedInfo = await axios({
-                    method: "DELETE",
-                    url: `${baseUrl}/orgs/${orgName}/members/${userName}`,
-                    header: {
-                        'Access-Control-Allow-Origin': '*',
-                        'Content-Type': 'application/json',
-                      },
-                    params:{q: email}
-                }),
-                hasRevoked =  revokedInfo.then(res => {
-                    if(res?.data?.items) {
-                        return true;
-                    }
-                });
-
-                if(hasRevoked) revokeEmployee(id);
+                if(revokedEmployee) revokeEmployee(id);
             }
         } catch(e) {
             console.log("error occurred: ", e);   
