@@ -2,6 +2,9 @@ import axios from 'axios' ;
 
 import {AuthService} from './AuthService' ;
 
+import {api_endpoints} from '../myConfig' ;
+
+
 export const APIService = {
     getMembers ,
     removeMember ,
@@ -13,7 +16,7 @@ export const APIService = {
 function getMembers(dispatch) {
     return new Promise( (resolve,reject) => {
 
-        axios.get('http://127.0.0.1:8000/api/member/').then(response=>{
+        axios.get(api_endpoints.member).then(response=>{
 
             dispatch( { type:'POPULATE_MEMBER_LIST' , payload:{ members: response.data } })
             resolve(response.data)
@@ -28,19 +31,23 @@ function getMembers(dispatch) {
     })
 }
 
-function removeMember(dispatch,id) {
+function removeMember(dispatch,id,myAlert='') {
+
+    if(myAlert) myAlert.show('Removing Member') ;
 
     return new Promise( (resolve,reject) => {
     
-        axios.delete(`http://127.0.0.1:8000/api/member/${id}/`).then(response=>{
+        axios.delete(`${api_endpoints.member}${id}/`).then(response=>{
     
-            dispatch( {type:'REMOVE_MEMBER' , payload : { id  }   } )
+            dispatch( {type:'REMOVE_MEMBER' , payload : { id  }   } ) ;
 
-            resolve(response.data)
+            if(myAlert) myAlert.show('member removed') ;
+
+            resolve(response.data) ;
         
         }).catch(error => {
         
-            unAuthHnadel(dispatch,error);
+            unAuthHnadel(dispatch,error,myAlert);
 
             reject(error)
         
@@ -56,7 +63,7 @@ function addMember(dispatch,email,myAlert) {
 
     return new Promise( (resolve,reject) => {
 
-        axios.post(`http://127.0.0.1:8000/api/member/`,memberData).then(response=>{
+        axios.post(api_endpoints.member,memberData).then(response=>{
 
             dispatch( {type:'ADD_MEMBER' , payload : { data : response.data  }   } )
 
@@ -79,9 +86,10 @@ function paginate(dispatch,page) {
 
     return new Promise( (resolve,reject) => {
 
-        axios.get(`http://127.0.0.1:8000/api/member/?page=${page+1}`).then(response=>{
+        axios.get(`${api_endpoints.member}?page=${page+1}`).then(response=>{
 
             dispatch( { type:'POPULATE_MEMBER_LIST' , payload:{ members: response.data } })
+
             resolve(response.data)
 
         }).catch(error => {

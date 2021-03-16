@@ -3,11 +3,13 @@ import React , {useEffect} from 'react' ;
 import { useSelector , useDispatch } from "react-redux" ;
 import { useHistory } from 'react-router-dom' ;
 import { APIService } from '../services/APIService' ;
-
+import { useAlert } from 'react-alert' ;
 
 export default function DataTable() {
 
     const dispatch = useDispatch() ;
+
+    const myAlert  = useAlert() ;
 
     const history  = useHistory()  ;
 
@@ -16,7 +18,7 @@ export default function DataTable() {
     useEffect( () => { APIService.getMembers(dispatch) } , [])
 
     const removeMember = (id) => {
-         APIService.removeMember(dispatch,id)
+         APIService.removeMember(dispatch,id,myAlert) ;
     }
 
     return (

@@ -15,3 +15,6 @@
     margin-left: 1%;
     cursor: pointer;
 }
+.pagination-cur-page {
+    background: rgb(194, 191, 191);
+}

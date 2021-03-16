@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-
+import {api_endpoints} from '../myConfig' ;
 
 export const AuthService = {
 
@@ -13,6 +13,7 @@ export const AuthService = {
 
 function login(dispatch,username , password , myAlert ='' ) {
 
+   
     if (myAlert) myAlert.show('trying to login..') ;
 
     let postData = {
@@ -22,7 +23,7 @@ function login(dispatch,username , password , myAlert ='' ) {
 
     return new Promise( (resolve,reject) =>{
 
-        axios.post(`http://127.0.0.1:8000/api/login`,postData).then( response => {
+        axios.post(api_endpoints.login,postData).then( response => {
            
             let data = {...response.data  ,'time' : new Date  }
         

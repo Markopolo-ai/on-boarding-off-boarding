@@ -26,7 +26,7 @@ export default function LoginBox() {
         <div className="loginbox">
                 
                 <div className="name">
-                    {/* MARKOPOLO.AI */}
+                    MARKOPOLO.AI
                 </div>
                 <input name='username' type="text" placeholder="username"/>
                 <input name='password' type="password" placeholder="password"/>
