@@ -19,7 +19,7 @@ const Home = () => {
       ></Box>
       <Box opacity="100%" mt="-30%">
         <Heading as="h3" size="lg" m="2">
-          Support Application
+          Support Platform
         </Heading>
 
         <Center mt="5">
@@ -27,12 +27,6 @@ const Home = () => {
             margine="auto"
             htmlWidth="10%"
             src="https://pngimg.com/uploads/github/github_PNG15.png"
-          />
-          <Image
-            margine="auto"
-            htmlWidth="8%"
-            src="https://www.nicepng.com/png/detail/685-6858798_google-drive-logo-vector.png"
-            ml="3"
           />
         </Center>
       </Box>
