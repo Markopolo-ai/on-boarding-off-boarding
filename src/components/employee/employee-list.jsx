@@ -30,8 +30,9 @@ class EmployeeList extends Component {
     revokeEmployee= async (email, id) => {
         const {revokeEmployee} = this.props;
 
-        let orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test",
-            baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';
+        let baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';
+        //  orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test",
+           
 
         await axios({
             method: "GET",
