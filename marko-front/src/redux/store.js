@@ -6,6 +6,7 @@ import {
 const initialState = {
     count : 23 ,
     list : []  ,
+    loggedin: false ,
 }
 
 export const counter = (state=initialState,action) => {
@@ -20,6 +21,9 @@ export const counter = (state=initialState,action) => {
             state.count += action.payload.nval
         case 'GET_LIST' : 
             state.list  = action.payload.list 
+            return state     
+        case 'LOGIN' :
+            state.loggedin = action.payload.loggedin 
             return state     
         default :
             return state     

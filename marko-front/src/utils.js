@@ -1,7 +1,10 @@
 
+import { useSelector } from "react-redux" ;
 
-export function isLoggedIn() {
-    return true ;
+// this is a custom hook 
+export const  IsLoggedIn = () => {
+       const  loggedin   = useSelector ( state => state.counter.loggedin )  ;
+       return loggedin ;
 }
 
 

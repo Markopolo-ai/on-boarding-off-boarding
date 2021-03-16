@@ -16,6 +16,9 @@ import PublicRoute from './component/PublicRoute' ;
 import PrivateRoute from './component/PrivateRoute' ;
 
 function App() {
+
+  // get info from localstorage to determine if loggedin 
+  // useEffect 
   return (
     
     <Router>
