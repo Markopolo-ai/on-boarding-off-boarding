@@ -1,1 +1,3 @@
 PostgreSQL is used as a database for this application. During the setup, *3* new databases are created for production, development, and testing purposes. The commands are stated in the `create.sql` file, which is added to the scripts of database initialization through the *Dockerfile*.
+
+Users and Passwords can be set on Docker Compose files through POSTGRES_USER and POSTGRES_PASSWORD environment variables. It will be utilized during the entrypoint for the setup.
