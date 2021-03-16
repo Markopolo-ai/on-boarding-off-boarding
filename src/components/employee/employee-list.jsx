@@ -32,7 +32,9 @@ class EmployeeList extends Component {
             const {revokeEmployee} = this.props;
             const baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';     
     
-            let userName = await axios({
+            let userName ="";
+            
+            await axios({
                 method: "GET",
                 url: `${baseUrl}/search/users`,
                 header: {
@@ -42,8 +44,10 @@ class EmployeeList extends Component {
                 params:{q: email}
             }).then(res => {
                 if(res?.data?.items) {
-                    return res.data.items[0]?.login;
+                    userName = res.data.items[0]?.login;
                 }
+            }).catch(e=>  {
+                console.log("Error occurred: ",e);
             });
 
             console.log("userName: ", userName);
@@ -51,7 +55,7 @@ class EmployeeList extends Component {
                 const orgName = process?.env?.GITHUB_ORGANIZATION || "markopolo-ai-test";
 
                 let revokedInfo = await axios({
-                    method: "GET",
+                    method: "DELETE",
                     url: `${baseUrl}/orgs/${orgName}/members/${userName}`,
                     header: {
                         'Access-Control-Allow-Origin': '*',
