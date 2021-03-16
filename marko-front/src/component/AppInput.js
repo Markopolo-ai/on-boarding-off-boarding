@@ -16,9 +16,10 @@ export default function AppInput() {
         
         let email = document.querySelector(".app-input > input[name='app-input']").value ;
 
-        APIService.addMember(dispatch,email,myAlert) ;
+        APIService.addMember(dispatch,email,myAlert).then( () => {
+            document.querySelector(".app-input > input[name='app-input']").value = ''
+        }) ;
 
-        document.querySelector(".app-input > input[name='app-input']").value = ''
     }
 
     return (

@@ -41,7 +41,7 @@ function removeMember(dispatch,id,myAlert='') {
     
             dispatch( {type:'REMOVE_MEMBER' , payload : { id  }   } ) ;
 
-            if(myAlert) myAlert.show('member removed') ;
+            if(myAlert) myAlert.success('member removed') ;
 
             resolve(response.data) ;
         
@@ -56,6 +56,8 @@ function removeMember(dispatch,id,myAlert='') {
 }
 
 function addMember(dispatch,email,myAlert) {
+
+    if(myAlert) myAlert.show('Adding Member') ;
 
     let memberData = {
         email 
