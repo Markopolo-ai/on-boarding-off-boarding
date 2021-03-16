@@ -1,0 +1,15 @@
+.dropdown-menu{
+    display: inline-block !important;
+    margin-left: -10rem !important;
+
+    .dropdown-item{
+        color: orangered;
+        &:hover{
+            background-color: orangered;
+            color: white;
+        }
+    }
+    a:focus{
+            font-size: 16px;
+    }
+}

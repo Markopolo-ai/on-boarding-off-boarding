@@ -1,0 +1,20 @@
+.login-page{
+    margin: 0 40px;
+    .submit-button {
+        background-color: white;
+        color: orangered;
+        cursor: pointer;
+        width: 10vh;
+        border: 2px Solid;
+        border-radius: 5px;
+        padding: 3px;
+        &:hover{
+            color: white;
+            background-color: orangered;
+        }
+        &:focus{
+            font-size: 16px;
+        }
+    }
+}
+
