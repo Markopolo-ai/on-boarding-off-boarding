@@ -21,7 +21,7 @@ export default function Pagination() {
                 [ ...Array( Math.ceil( (pagination.count / 4) || 0 ) ) ].map( (v,idx)=> {
                     return (
 
-                        <div onClick={ () => gotoPage(idx) } > { idx + 1 } </div>
+                        <div key={idx} onClick={ () => gotoPage(idx) } > { idx + 1 } </div>
                     )
                 })
             }

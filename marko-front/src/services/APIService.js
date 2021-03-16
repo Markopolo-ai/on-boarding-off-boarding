@@ -48,7 +48,7 @@ function removeMember(dispatch,id) {
     })
 }
 
-function addMember(dispatch,email) {
+function addMember(dispatch,email,myAlert) {
 
     let memberData = {
         email 
@@ -60,11 +60,13 @@ function addMember(dispatch,email) {
 
             dispatch( {type:'ADD_MEMBER' , payload : { data : response.data  }   } )
 
+            if(myAlert) myAlert.success('member added ')
+
             resolve(response.data)
 
         }).catch(error => {
             
-            unAuthHnadel(dispatch,error);
+            unAuthHnadel(dispatch,error,myAlert);
 
             reject(error)
             
@@ -93,8 +95,17 @@ function paginate(dispatch,page) {
 }
 
 
-function unAuthHnadel(dispatch,error) {
+function unAuthHnadel(dispatch,error,myAlert) {
+    
     if( error.response.status  == 401) {
+        if(myAlert) myAlert.error('unauthenticated')
         AuthService.logout(dispatch) ;
+    }else {
+
+        if(myAlert && error.response.data.email)
+        error.response.data.email.map( v => {
+            myAlert.error(v)
+        })
     }
+
 }

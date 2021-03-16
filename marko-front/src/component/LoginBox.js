@@ -4,9 +4,13 @@ import {useDispatch} from 'react-redux' ;
 
 import {AuthService} from '../services/AuthService' ;
 
+import { useAlert } from 'react-alert' ;
+
 export default function LoginBox() {
 
     const dispatch = useDispatch() ;
+
+    const myAlert   = useAlert() ;
 
     const login = () => {
         
@@ -14,7 +18,7 @@ export default function LoginBox() {
 
         let password = document.querySelector(".loginbox > input[name='password']").value ;
         
-        AuthService.login(dispatch,username,password)
+        AuthService.login(dispatch,username,password,myAlert)
 
     }
 

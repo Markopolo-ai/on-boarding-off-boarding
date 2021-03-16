@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 
+
 export const AuthService = {
 
     login ,
@@ -9,7 +10,10 @@ export const AuthService = {
 }
 
 
-function login(dispatch,username , password) {
+
+function login(dispatch,username , password , myAlert ='' ) {
+
+    if (myAlert) myAlert.show('trying to login..') ;
 
     let postData = {
         username ,
@@ -27,10 +31,18 @@ function login(dispatch,username , password) {
             axios.defaults.headers.common['Authorization'] = `Bearer ${data.access}`;
             
             dispatch({type:'LOGIN_USER' })
-            
+
+            if (myAlert) myAlert.success('WELCOME') ;
+          
             resolve()
         
-        }).catch( error => reject(error) )
+        }).catch( error => {
+
+            if (myAlert) myAlert.error('login failed') ;
+
+            reject(error)
+
+        } )
 
     } )
     
@@ -57,5 +69,9 @@ function check(dispatch) {
         
         dispatch( {type : 'LOGIN_USER'  } ) ;
     }
+
+}
+
+function handelError(error) {
 
 }
