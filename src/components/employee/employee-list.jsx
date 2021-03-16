@@ -32,9 +32,7 @@ class EmployeeList extends Component {
             const {revokeEmployee} = this.props;
             const baseUrl = process?.env?.GITHUB_BASE_URL || 'https://api.github.com';     
     
-            let userName ="";
-            
-            await axios({
+            let userName = await axios({
                 method: "GET",
                 url: `${baseUrl}/search/users`,
                 header: {
@@ -42,13 +40,15 @@ class EmployeeList extends Component {
                     'Content-Type': 'application/json',
                   },
                 params:{q: email}
-            }).then(res => {
-                if(res?.data?.items) {
-                    userName = res.data.items[0]?.login;
-                }
-            }).catch(e=>  {
-                console.log("Error occurred: ",e);
-            });
+            }).promise();
+
+            // then(res => {
+            //     if(res?.data?.items) {
+            //         return res.data.items[0]?.login;
+            //     }
+            // }).catch(e=>  {
+            //     console.log("Error occurred: ",e);
+            // });
 
             console.log("userName: ", userName);
             if(userName) {
