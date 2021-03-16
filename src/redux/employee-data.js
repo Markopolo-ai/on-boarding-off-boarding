@@ -3,7 +3,7 @@ export const data = [
         id: 1,
         firstName: 'Md. Rashadul',
         lastName: 'Islam',
-        email: 'rashad@gmail.com',
+        email: 'rashad130602@gmail.com',
         hasAccess: true,
         phoneNumber: '0154458974'
     },
