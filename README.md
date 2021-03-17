@@ -1,22 +1,22 @@
-Hello candidate,
+# Table of Content 
+- [UI](#UI)
+- [Frontend](#Frontend)
+- [Backend](#Backend)
+- [Microservice](#Microservice)
+- [Third Party API](#Third-Party-API)
 
-You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
 
-How will it work?
+## UI
+Figma design link :
+https://www.figma.com/file/zxnUsozBcv1UG7TUXKi2QR/MARKOPOLO-AI
 
-New teammmember provides the manager with their email id. The manager will input that email id into the web app and 
-the teammember will get access to the organization's Github, Trello, folders in Google Drive, Slack. In similar way,
-when the teammember leaves, with one click from the manager, their access will be revoked.
+## Frontend
+Frontend is made with React , Redux and bootstrap  
 
-What you need to deliver
+## Backend
+Is built with Django Rest Framework and for data store sqlite is used 
+## Microservice
+Both frontend and backend service were dockerized
+## Third party API 
+For demonstrating third party API integration , Trello API is implemented 
 
-- [ ] UI design on Figma
-- [ ] Frontend of the webapp using React-Redux
-- [ ] (if needed) Backend in serverless framework
-- [ ] Dockerize the app
-- [ ] Make a pull request
-- [ ] Documentation of the entire webapp
-
-If you have questions, please state your assumptions on the documentation and proceed with development.
-
-Happy hacking!
