@@ -1,0 +1,27 @@
+@import './../../App.scss';
+
+.wrapper{
+    display: flex;
+    flex-direction:column;
+    margin-top:20px;
+    padding-right: 10px;
+    width:100%;
+    .container{
+        width:max-content;
+        .image{
+            width: 70px;
+            height: 70px;
+            background:cover;
+            border-radius:50%;
+        }
+        
+        .info{
+            .name{
+                font-size:15px;
+            }
+            .mail{
+                font-size:12px;
+            }
+        }
+    }
+}
