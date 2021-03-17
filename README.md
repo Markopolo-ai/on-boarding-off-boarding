@@ -12,4 +12,4 @@ For your convenience the documentation for [frontend](https://github.com/tonmoy5
 
 ## Figma File
 
-I have addedd the figma file here
+I have addedd the figma file [here](https://github.com/tonmoy50/on-boarding-off-boarding/tree/main/figma). Also, you can also view the file in the web using this link - https://www.figma.com/file/Lqrj1qBXEyKCXyy4SjNkLC/On-Boarding-UI?node-id=0%3A1
