@@ -30,6 +30,7 @@ def login():
             return jsonify(response), 200
         else:
             response['loggedIn'] = True
+            response['id'] = current_user.id
             return jsonify(response), 200
     
     elif request.method == 'POST':
