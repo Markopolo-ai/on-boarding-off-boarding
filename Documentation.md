@@ -13,6 +13,7 @@ This is an employee onbarding-offboarding app where one can invite/remove a memb
 
 
 ## Project Demo
+![Demo](https://github.com/DimaMirana/on-boarding-off-boarding/blob/Dima/app.gif.gif)
 ## Project Approach
 This is a invitation/ delete member from the company's project github organization web app. From the requirements it's needed to add a member in the organization when an email is given. Similarly, can delete an already existing member from the organization with one click. Now, we can't directly add a member in the organization, if we want to add someone in our organization, we need to sent an invitation mail to the person's mail. But it's possible to remove the member without the colaborator's permission. It's need to be also noted that only the person who has administrator previlage can invite member. Also when try to Use GitHub API from an app, it's necessary to have the Personal Access Token to the of the administrator. Unless he/she can't invite any member.
 To make this app, I added a login with google layer, so that the information of the person who's log in can be saved into database. After successful log in, the persn should give the Personal Access Token so that it can be saved untill the projects reload, in that way, the private tokeen dorsesn't need to be saved anywhere. After the token validation, the user should be able to see the pre-existing members of the organization , also there will be a cross button beside each user name so that with onl one click on the cross butto, the person should be removed from the organization.
@@ -39,8 +40,8 @@ FireBase API:
 2. Create and delete document from a collection
 
 ## Project Architechure
-1. ![App Flow](https://ibb.co/gP8WxSN)
-2. ![Databaase](https://ibb.co/54cy4MN)
+1. ![App Flow](https://i.ibb.co/CMy9fbg/App.png)
+2. ![Databaase](https://i.ibb.co/qj1fjyt/db.png)
 
 ## Implementation
 - Tech Stack - ReactJS, ContextAPI, Firebase
