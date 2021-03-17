@@ -16,6 +16,7 @@ const initialLoginState = {
 const initialAdminData = {
     id: null,
     email: null,
+    isSuperAdmin: null,
     token: null
 }
 
@@ -42,11 +43,12 @@ function login(initialState = initialLoginState, action) {
 function admin(initialState = initialAdminData, action) {
     switch(action.type) {
         case UPDATE_ADMIN_DATA:
-            const {email, id} = action;
+            const {email, id, isSuperAdmin} = action;
             return {
                 ...initialState,
                 email: email,
-                id: id
+                id: id,
+                isSuperAdmin: isSuperAdmin 
             };
         case UPDATE_ADMIN_TOKEN:
             const {token} = action;

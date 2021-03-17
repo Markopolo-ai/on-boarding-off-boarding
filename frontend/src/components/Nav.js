@@ -32,7 +32,7 @@ class Nav extends Component {
         })
         .catch(err => {
             this.setState({error: err.response.data.message});
-            M.toast({html: error.response.data.message});
+            M.toast({html: err.response.data.message});
         })
     }
 
@@ -46,9 +46,9 @@ class Nav extends Component {
                         <div className="nav-wrapper">
                         <Link to="/" className="brand-logo">Admin Dashboard</Link>
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li><Link to="/admins">Admins</Link></li>
-                            <li><Link to="/staffs">Staffs</Link></li>
-                            <li><Link to="/permissions">Permissions</Link></li>
+                            <li><button className="waves-effect waves-light btn teal darken-4" onClick={() => this.props.onClickNavLink('admin')}>Admins</button></li>
+                            <li><button className="waves-effect waves-light btn teal darken-4" onClick={() => this.props.onClickNavLink('staff')}>Staffs</button></li>
+                            <li><button className="waves-effect waves-light btn teal darken-4" onClick={() => this.props.onClickNavLink('permissions')}>Permissions</button></li>
                             <li><button className="waves-effect waves-light btn red darken-4" onClick={this.logout}>Logout</button></li>
                         </ul>
                         </div>
@@ -62,7 +62,7 @@ class Nav extends Component {
 
 // This component requires only the loggedIn state from the global
 // redux store to update the login status.
-function mapStateToProps({login, admin}) {
+function mapStateToProps({login, admin}, ownProps) {
     return {
         loggedIn: login.loggedIn
     }

@@ -175,6 +175,7 @@ def get_admin(admin_id):
             'data': {
                 'id': admin.id,
                 'email': admin.email,
+                'password': admin.password,
                 'is_superadmin': admin.is_superadmin
             }
         }

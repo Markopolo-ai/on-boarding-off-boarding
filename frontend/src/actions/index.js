@@ -15,11 +15,12 @@ export function updateLoginStatus({loggedIn}) {
     }
 };
 
-export function updateAdminData({id, email}) {
+export function updateAdminData({id, email, isSuperAdmin}) {
     return {
         type: UPDATE_ADMIN_DATA,
         id,
-        email
+        email,
+        isSuperAdmin
     }
 };
 
