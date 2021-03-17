@@ -4,31 +4,59 @@ import {Link} from 'react-router-dom';
 import { Redirect } from 'react-router';
 import axios from 'axios';
 
+import M from 'materialize-css';
 import {updateLoginStatus} from '../actions/index';
 
 class Nav extends Component {
     componentDidMount() {
-        console.log(this.props.loggedIn);
+        M.AutoInit();
+    }
+
+    state = {
+        success: false,
+        error: null
     }
 
     logout = () => {
-        console.log("sdfsd")
+        let api_url = "http://localhost:80/api/admins/logout";
+        axios({
+            method: 'post',
+            url: api_url,
+        })
+        .then(resp => {
+            if (resp.data.status === "success") {
+                this.props.updateLoginStatus({loggedIn: false});
+                this.setState({success: true});
+                M.toast({html: "Successfully logged out"})
+            }
+        })
+        .catch(err => {
+            this.setState({error: err.response.data.message});
+            M.toast({html: error.response.data.message});
+        })
     }
 
     render() {
-        return (
-            <nav className="indigo darken-4">
-                <div className="nav-wrapper">
-                <Link to="/" className="brand-logo">Admin Dashboard</Link>
-                <ul id="nav-mobile" className="right hide-on-med-and-down">
-                    <li><Link to="/admins">Admins</Link></li>
-                    <li><Link to="/staffs">Staffs</Link></li>
-                    <li><Link to="/permissions">Permissions</Link></li>
-                    <li><Link className="waves-effect waves-light btn-large red darken-4" to="/logout" >Logout</Link></li>
-                </ul>
+        if (this.state.success || !this.props.loggedIn) {
+            return <Redirect to="/" />
+        } else {
+            return (
+                <div>
+                    <nav className="indigo darken-4">
+                        <div className="nav-wrapper">
+                        <Link to="/" className="brand-logo">Admin Dashboard</Link>
+                        <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            <li><Link to="/admins">Admins</Link></li>
+                            <li><Link to="/staffs">Staffs</Link></li>
+                            <li><Link to="/permissions">Permissions</Link></li>
+                            <li><button className="waves-effect waves-light btn red darken-4" onClick={this.logout}>Logout</button></li>
+                        </ul>
+                        </div>
+                    </nav>
                 </div>
-            </nav>
-        )
+            )
+
+        }
     }    
 }
 

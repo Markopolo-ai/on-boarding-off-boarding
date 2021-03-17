@@ -66,7 +66,7 @@ class Login extends Component {
             return <Redirect to="/" />
         } else {
             return (
-                <div id="login-form">
+                <div id="login-form" className="container">
                     <div className="row">
                         <div className="col s12 m6 offset-m3">
                             <h1>Login</h1>
