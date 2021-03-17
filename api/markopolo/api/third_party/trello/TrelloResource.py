@@ -3,17 +3,19 @@ import requests
 
 from string import Template 
 
+
+
 class TrelloResource :
 
-    def __init__(self,member):
+    def __init__(self,member,config):
 
         self.member   = member 
 
-        self.token    = "4076d55bbd9bab0c36f1fd9b82bb12109a2f57b1c46983180cf708fe2eb0f4ab"
+        self.token    = config['TRELLO_TOKEN']
 
-        self.key      = "e4992763ab628749ae1adcd4ff3a5b68" 
+        self.key      = config['TRELLO_KEY']  
 
-        self.board_id = "604f0e8ed746c67a8e2b60d6"
+        self.board_id = config['TRELLO_BOARD_ID'] 
 
         self.add_member_url    = Template('https://api.trello.com/1/boards/$board_id/members?key=$key&token=$token&type=$type&email=$email') 
 

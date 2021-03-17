@@ -6,6 +6,24 @@ from .models import MemberModel
 
 from api.third_party.trello.TrelloResource import TrelloResource 
 
+import environ 
+
+environ.Path(__file__)
+
+env = environ.Env(
+    TRELLO_TOKEN=(str,''),
+    TRELLO_KEY=(str,''),
+    TRELLO_BOARD_ID=(str,''),
+)
+
+environ.Env.read_env() 
+
+config = {
+    'TRELLO_TOKEN' : env('TRELLO_TOKEN') ,
+    'TRELLO_KEY' : env('TRELLO_KEY') ,
+    'TRELLO_BOARD_ID' : env('TRELLO_BOARD_ID') ,
+}
+
 @receiver(post_save,sender=MemberModel,weak=False)
 def handel_user_create(sender,instance,created,**kwargs):
     if created:
@@ -19,7 +37,7 @@ def handel_user_create(sender,instance,created,**kwargs):
         instance.git_access   = 1 
         instance.slack_access = 1
         instance.drive_access = 1
-        trello_resource = TrelloResource(instance)
+        trello_resource = TrelloResource(instance,config)
         trello_id = trello_resource.GiveAccess() 
 
         if trello_id :
@@ -38,7 +56,7 @@ def handel_user_delete(sender,instance,**kwargs):
         
     """
     
-    trello_resource = TrelloResource(instance)
+    trello_resource = TrelloResource(instance,config)
 
     if trello_resource.RevokeAccess():
         print('trello access revoked')
