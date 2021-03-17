@@ -156,6 +156,7 @@ STATIC_URL = '/static/'
 CORS_ORIGIN_WHITELIST = [
     'http://localhost',
     'http://localhost:3000',
+    'http://localhost:3001',
 ] 
 
 # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`

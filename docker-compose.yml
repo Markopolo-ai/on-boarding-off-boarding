@@ -1,0 +1,28 @@
+version: '3'
+
+
+networks:
+  mynet:
+
+
+services:
+  react_front:
+    build:
+      context: .
+      dockerfile: react.dockerfile 
+    ports: 
+      - "3001:3000"
+    depends_on:
+      - api_bakend
+    networks:
+      - mynet
+
+  api_bakend:
+    build:
+      context: .
+      dockerfile: api.dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - mynet
+
