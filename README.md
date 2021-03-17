@@ -1,44 +1,45 @@
-Hello candidate,
+Access/Revoke to Google Drive Folder/File
 
-You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
+Description: Using Email Id and folder name, user give access or revoke permission on google drive folder.
 
-How will it work?
+Software/Framework:
+Ui: Figma
+Deploy: Heroku
+Frontend: React
+Backend: Flask
 
-New teammmember provides the manager with their email id. The manager will input that email id into the web app and 
-the teammember will get access to the organization's Github, Trello, folders in Google Drive, Slack. In similar way,
-when the teammember leaves, with one click from the manager, their access will be revoked.
+Prerequisites:
+Install Python, Node.js
+Install Flask, React
+Install Google Drive api package.
 
-What you need to deliver
+Installation:
+First install the Flask environment for the backend.
+Then install the React environment for the frontend.
+Lastly install heroku cli to deploy the project.
 
-- [ ] UI design on Figma
-- [ ] Frontend of the webapp using React-Redux
-- [ ] (if needed) Backend in serverless framework
-- [ ] Dockerize the app
-- [ ] Make a pull request
-- [ ] Documentation of the entire webapp
+Functionality:
+Creating two main functions. One for creating permission, and another one for revoke permission.
+Creating permission take three parameters (email,file_id,role)
+Revoke permission takes two(email, file_id).
 
-If you have questions, please state your assumptions on the documentation and proceed with development.
+Ui: Design Ui on Figma https://www.figma.com/proto/drQL3U37LQiQ9VWF7sVqY5/Permission?node-id=102%3A31&scaling=min-zoom 
 
-Here are some FAQs regarding the coding challenge:
+Code:
+	Github: https://github.com/tanvir0ahmmed/google-drive-api 
 
-## Do I need to implement all the third-party applications?
+Deployment:
+Deploy in Heroku
+I deploy react and flask separately. And using proxy settings in React(using package.json) passing values from frontend to backend api url.
+Link:
+React: https://react-api-bot-v1.herokuapp.com/ 
+Flask: https://flask-api-bot-v1.herokuapp.com/ (this implementation has no get request, so, this link will be shown: The method is not allowed for the requested URL.)
 
-Not at all. Pick one, any one of Github, Slack, Drive. Or you can choose any third-party application as you like. We just want to see how comfortable you're at working with third-party APIs.
+Issue:
+After deployment, create an issue to send a post request to the backend api/ flask port. But work properly in a local environment.
 
-## Should I implement the application in serverless or docker?
+Working Prof:
+Video: https://drive.google.com/file/d/15mI1VKyDUYqIzxH-gNkhy7hvG5xziGZ7/view?usp=sharing  
 
-Actually, both. How? Write two microservices. A partial backend micro-service in serverless and another partial service in docker. Of course they will need to communicate with each other. We understand that this makes the architecture overly complicated. But we are trying to understand your proficiency with microservices. If you don't get the time to implement both, choose serverless.
 
-## Do I need to submit a fully functional code?
 
-We understand that the time provided to you is very limited. So we don't expect you to make a picture perfect submission. However, please make sure to meticulously document your plans on how you'll implement the code.
-
-## What is the assessment criteria?
-
-We want to see that you are comfortable working with - design tools (Figma), git, microservices, React, third-party APIs, code quality and documentation.
-
-## I have further questions. Who should I ask?
-
-To keep the challenge unbiased, we don't answer questions during the challenge. If you face any confusion, please write down your assumptions in the documentation and proceed accordingly.
-
-Happy hacking!
