@@ -2,8 +2,6 @@ FROM node:latest
 
 WORKDIR /app
 
-COPY ./marko-front ./
+RUN npm install react-scripts@4.0.3 -g 
 
-RUN npm install --silent 
-
-CMD ["npm","start"]
+CMD npm install && npm start 
