@@ -1,44 +1,15 @@
-Hello candidate,
+# On Boarding Off Boarding
 
-You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
+In this project I have made a google drive folder management web application. It will used to view list of users currently have access to a folder, add a user to that folder and revoke permission to access that folder for any existing user. All of this would be done with a single click. Meaning, adding or removing user from the drive folder with just a single click of a button. 
 
-How will it work?
+## Status
+This project able to function fully with the mentioned field. However, it is still in development phase and I wish to enable drive like feature here. Since, it is only accessible my a manager who will control drive access to the user, I want to add option for user to login also to the application and view the folders they have been given access to with a UI similar to google drive for ease of use. 
 
-New teammmember provides the manager with their email id. The manager will input that email id into the web app and 
-the teammember will get access to the organization's Github, Trello, folders in Google Drive, Slack. In similar way,
-when the teammember leaves, with one click from the manager, their access will be revoked.
+## Setup and Requirement
 
-What you need to deliver
+The project is splitted into frontend and backend. The *drive_api* is the backend and *drive-access-frontend* is the frontend part of this project. Detailed information regarding setup of frontend and backend can be found in the respective directory section. Please follow them to setup the environment successfully. 
+For your convenience the documentation for [frontend](https://github.com/tonmoy50/on-boarding-off-boarding/blob/main/drive-access-frontend/README.md) and [backend](https://github.com/tonmoy50/on-boarding-off-boarding/blob/main/drive_api/README.md) can be directly accessible just by clicking the name here. 
 
-- [ ] UI design on Figma
-- [ ] Frontend of the webapp using React-Redux
-- [ ] (if needed) Backend in serverless framework
-- [ ] Dockerize the app
-- [ ] Make a pull request
-- [ ] Documentation of the entire webapp
+## Figma File
 
-If you have questions, please state your assumptions on the documentation and proceed with development.
-
-Here are some FAQs regarding the coding challenge:
-
-## Do I need to implement all the third-party applications?
-
-Not at all. Pick one, any one of Github, Slack, Drive. Or you can choose any third-party application as you like. We just want to see how comfortable you're at working with third-party APIs.
-
-## Should I implement the application in serverless or docker?
-
-Actually, both. How? Write two microservices. A partial backend micro-service in serverless and another partial service in docker. Of course they will need to communicate with each other. We understand that this makes the architecture overly complicated. But we are trying to understand your proficiency with microservices. If you don't get the time to implement both, choose serverless.
-
-## Do I need to submit a fully functional code?
-
-We understand that the time provided to you is very limited. So we don't expect you to make a picture perfect submission. However, please make sure to meticulously document your plans on how you'll implement the code.
-
-## What is the assessment criteria?
-
-We want to see that you are comfortable working with - design tools (Figma), git, microservices, React, third-party APIs, code quality and documentation.
-
-## I have further questions. Who should I ask?
-
-To keep the challenge unbiased, we don't answer questions during the challenge. If you face any confusion, please write down your assumptions in the documentation and proceed accordingly.
-
-Happy hacking!
+I have addedd the figma file here
