@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+My Documentation goes here.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Fisrtly I want to apologize for the fact that I didn't implemented the project with all of your requirements.
 
-## Available Scripts
 
-In the project directory, you can run:
+I have followed a pretty simple approach here. 
 
-### `npm start`
+1. Fisrt, with the submission of an email, I am storing the mail in an array in local storage with the other mails presented in the array. Surely I would use a database for this purpose, but for the simplicity I have used the localstorage as the storage space. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+You can see for my implementation of storing the emails and adding new mails in the 'handleCLick' and 'handleSubmit' funtion in App.js.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Now, I have used user_list component to show the list of the emails. 
 
-### `npm test`
+3. With the two attached buttons, I have given access and remove the access for an user to one of my private repo.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. To implement that, I have make an fetch() with the email id submitted. From the response, I have recieved the UserName of that particular email.
 
-### `npm run build`
+5. Then with the UserName recieved before, I have made another fetch().
+    I've used the second fetch() to give or remove access.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To give or remove access, I had do use my personal access token. I am not giving the token in the code. If you try to test, please use your own access tokens.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+While implementing the remove access feature, I would like to remove the email from the list too. But I didn't implement that for this time.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+***********Bugs************
+After the submision of first email, it won't be shown in the list. 
+Please add at least two emails one after another.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+**********Attention***********
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+I don't know why, but there's a problem with github api while searching for the userName with email id. 
 
-## Learn More
+'https://api.github.com/search/users?q=' + email
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+for some accounts, this request returns nothing. I have tested it with postman in my environment with several of my friends email id's. Many of them returns nothing. If that is the case, then it will raise an error.
