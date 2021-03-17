@@ -1,44 +1,38 @@
-Hello candidate,
+My Documentation goes here.
 
-You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
+Fisrtly I want to apologize for the fact that I didn't implemented the project with all of your requirements.
 
-How will it work?
 
-New teammmember provides the manager with their email id. The manager will input that email id into the web app and 
-the teammember will get access to the organization's Github, Trello, folders in Google Drive, Slack. In similar way,
-when the teammember leaves, with one click from the manager, their access will be revoked.
+I have followed a pretty simple approach here. 
 
-What you need to deliver
+1. Fisrt, with the submission of an email, I am storing the mail in an array in local storage with the other mails presented in the array. Surely I would use a database for this purpose, but for the simplicity I have used the localstorage as the storage space. 
 
-- [ ] UI design on Figma
-- [ ] Frontend of the webapp using React-Redux
-- [ ] (if needed) Backend in serverless framework
-- [ ] Dockerize the app
-- [ ] Make a pull request
-- [ ] Documentation of the entire webapp
+You can see for my implementation of storing the emails and adding new mails in the 'handleCLick' and 'handleSubmit' funtion in App.js.
 
-If you have questions, please state your assumptions on the documentation and proceed with development.
+2. Now, I have used user_list component to show the list of the emails. 
 
-Here are some FAQs regarding the coding challenge:
+3. With the two attached buttons, I have given access and remove the access for an user to one of my private repo.
 
-## Do I need to implement all the third-party applications?
+4. To implement that, I have make an fetch() with the email id submitted. From the response, I have recieved the UserName of that particular email.
 
-Not at all. Pick one, any one of Github, Slack, Drive. Or you can choose any third-party application as you like. We just want to see how comfortable you're at working with third-party APIs.
+5. Then with the UserName recieved before, I have made another fetch().
+    I've used the second fetch() to give or remove access.
 
-## Should I implement the application in serverless or docker?
+To give or remove access, I had do use my personal access token. I am not giving the token in the code. If you try to test, please use your own access tokens.
 
-Actually, both. How? Write two microservices. A partial backend micro-service in serverless and another partial service in docker. Of course they will need to communicate with each other. We understand that this makes the architecture overly complicated. But we are trying to understand your proficiency with microservices. If you don't get the time to implement both, choose serverless.
 
-## Do I need to submit a fully functional code?
 
-We understand that the time provided to you is very limited. So we don't expect you to make a picture perfect submission. However, please make sure to meticulously document your plans on how you'll implement the code.
+While implementing the remove access feature, I would like to remove the email from the list too. But I didn't implement that for this time.
 
-## What is the assessment criteria?
+***********Bugs************
+After the submision of first email, it won't be shown in the list. 
+Please add at least two emails one after another.
 
-We want to see that you are comfortable working with - design tools (Figma), git, microservices, React, third-party APIs, code quality and documentation.
 
-## I have further questions. Who should I ask?
+**********Attention***********
 
-To keep the challenge unbiased, we don't answer questions during the challenge. If you face any confusion, please write down your assumptions in the documentation and proceed accordingly.
+I don't know why, but there's a problem with github api while searching for the userName with email id. 
 
-Happy hacking!
+'https://api.github.com/search/users?q=' + email
+
+for some accounts, this request returns nothing. I have tested it with postman in my environment with several of my friends email id's. Many of them returns nothing. If that is the case, then it will raise an error.
