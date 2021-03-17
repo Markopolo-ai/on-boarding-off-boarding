@@ -113,7 +113,7 @@ class App extends Component {
       fetch('https://api.github.com/repos/Mustafiz48/No_one_should_know/collaborators/'+ data.items[0].login,{
         method: 'delete', 
         headers: new Headers({
-          'Authorization': 'Bearer '+'3332248c4b96993eadf9c750f857513bd3557dd0', 
+          'Authorization': 'Bearer '+'personal access token here', 
           'Content-Type': 'application/x-www-form-urlencoded',
           'accept': 'application/vnd.github.v3+json',
           'permission': 'push'
