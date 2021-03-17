@@ -14,43 +14,43 @@ class Dashboard extends Component {
         currentPage: "admin"
     }
 
-    checkCurrentAdmin = () => {
-        let api_url = "http://localhost:80/api/admins/login";
-        axios({
-            method: 'get',
-            url: api_url
-        })
-        .then(resp => {
+    constructor(props) {
+        super(props);
+        this.getAdmin = this.getAdmin.bind(this);
+    }
+
+    async getAdmin() {
+        try {
+            let get_id_url = "http://localhost:80/api/admins/login";
+            let resp = await axios({
+                method: 'get',
+                url: get_id_url
+            });
+            console.log(resp);
             this.props.updateAdminData({
                 id: resp.data.id,
                 email: null,
                 isSuperAdmin: null
             });
-            this.fetchAdminData();
-        })
-        .catch(error => console.log(error));
-    }
 
-    fetchAdminData = () => {
-        let api_url = `http://localhost:80/api/admins/${this.props.id}`;
-        axios({
-            method: 'get',
-            url: api_url
-        })
-        .then(resp => {
-            let {id, email, is_superadmin} = resp.data.data;
+            let get_admin_url = `http://localhost:80/api/admins/${this.props.id}`;
+            resp = await axios({
+                method: 'get',
+                url: get_admin_url
+            })
+            console.log(resp);
             this.props.updateAdminData({
-                id: id,
-                email: email,
-                isSuperadmin: is_superadmin
+                id: resp.data.data.id,
+                email: resp.data.data.email,
+                isSuperadmin: resp.data.data.is_superadmin
             });
-        })
-        .catch(error => console.log(error));
+        } catch (err) {
+            alert(err.response.data.message);
+        }
     }
 
     componentDidMount() {
-        this.checkCurrentAdmin();
-        this.fetchAdminData();
+        this.getAdmin();
     }
 
     onClinkNavLink = (page) => {

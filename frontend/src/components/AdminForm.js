@@ -26,7 +26,7 @@ class AdminForm extends Component {
                 this.setState({
                     id: id,
                     email: email,
-                    isSuperadmin: isSuperAdmin
+                    is_superadmin: is_superadmin
                 });
             })
             .catch(error => console.log(error));

@@ -16,15 +16,7 @@ class Admin extends Component {
             <div className="container">
                 <Route path="/admin/manage" component={AdminForm} />
                 <h3>Welcome {this.props.email}</h3>
-                <Link to={{
-                    pathname="/admin/manage",
-                    linkProps = {
-                        action='edit',
-                        self=true,
-                        editId=this.props.id
-                    }
-                }} className="waves-effect waves-light btn teal darken-4">Edit Your Details</Link>
-                <hr/>
+                
             </div>
         )
     }
