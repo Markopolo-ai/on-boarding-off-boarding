@@ -1,0 +1,17 @@
+@import './../../App.scss';
+
+.sign-in {
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    
+    .title {
+        margin: 10px 25%;
+        justify-content: center;
+    }
+    
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}

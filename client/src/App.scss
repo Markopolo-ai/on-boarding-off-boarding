@@ -1,0 +1,12 @@
+@import './scss/abstract/_functions.scss';
+@import './scss/abstract/_mixins.scss';
+@import './scss/abstract/_variables.scss';
+@import './scss/base/_base.scss';
+@import './scss/base/_typography.scss';
+@import './scss/base/_utilities.scss';
+@import './scss/components/_button.scss';
+
+.app{
+    display: flex;
+    flex-direction: row;
+}
