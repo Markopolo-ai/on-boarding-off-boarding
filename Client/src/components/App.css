@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+.Wrapper {
+  /* width: 500px; */
+  /* border: solid black; */
+  margin: auto;
+  padding-top: 100px;
+  align-items: center;
+  text-align: center;
+}
+
+
+.Space-50 {
+  height: 50px;
+}
