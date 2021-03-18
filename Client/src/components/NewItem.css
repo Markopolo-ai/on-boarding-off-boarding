@@ -1,0 +1,28 @@
+
+.NewItemWrapper {
+    width: 600px;
+    height: 30px;
+    margin: auto;
+    /* border: 3px solid grey; */
+    padding: 20px;
+    /* text-align: center; */
+}
+
+
+.NewMailId {
+    width: 50%;
+    height: 100%;
+    margin: 10px;
+    /* float: left; */
+    /* border: solid blue; */
+}
+
+.NewMailButtonWrapper {
+    display: inline;
+
+}
+.NewMailButton {
+    height: 100%;
+    color: green;
+}
+
