@@ -42,3 +42,5 @@ We want to see that you are comfortable working with - design tools (Figma), git
 To keep the challenge unbiased, we don't answer questions during the challenge. If you face any confusion, please write down your assumptions in the documentation and proceed accordingly.
 
 Happy hacking!
+
+ok..
