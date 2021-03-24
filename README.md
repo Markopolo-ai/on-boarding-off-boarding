@@ -1,5 +1,3 @@
-
-
 # Manage Organization
 
 ![ezgif-7-7fecaf96f958](https://user-images.githubusercontent.com/60034035/111368066-9a44ae80-86bf-11eb-91d0-b15673c9dc46.gif)

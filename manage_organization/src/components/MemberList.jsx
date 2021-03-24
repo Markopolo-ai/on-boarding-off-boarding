@@ -16,7 +16,8 @@ import {
   TableCaption,
   Avatar,
 } from "@chakra-ui/react";
-import {config} from "../config.js"
+import { config } from "../config.js";
+import { Skeleton, SkeletonCircle, SkeletonText } from "@chakra-ui/react";
 
 const MemberList = () => {
   const [members, setMember] = useState([]);
@@ -41,8 +42,9 @@ const MemberList = () => {
   };
 
   useEffect(() => {
-    getMemberList();
+    
   });
+  const { data, loading, error } = getMemberList();
 
   return (
     <div>
@@ -58,29 +60,35 @@ const MemberList = () => {
         minH="100%"
       ></Box>
 
-      <Box w="50%" m="auto" mt="-30%">
-        <Table variant="simple">
-          <TableCaption>Organization Members</TableCaption>
-          <Thead>
-            <Tr>
-              <Th>Avatar</Th>
-              <Th>Username</Th>
-              <Th>Role</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {members.map((member) => (
+     
+        <Box w="50%" m="auto" mt="-30%">
+          <Table variant="simple">
+            <TableCaption>Organization Members</TableCaption>
+            <Thead>
               <Tr>
-                <TableList
-                  username={member.login}
-                  avatar={member.avatar_url}
-                  role={member.type}
-                />
+                <Th>Avatar</Th>
+                <Th>Username</Th>
+                <Th>Role</Th>
               </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </Box>
+            </Thead>
+            <Tbody>
+            <Tr >
+              <Th><Skeleton isLoaded={!loading} height="20px"/></Th>
+              <Th><Skeleton isLoaded={!loading} height="20px"/></Th>
+              <Th><Skeleton isLoaded={!loading} height="20px"/></Th>
+            </Tr>
+              {members.map((member) => (
+                <Tr>
+                  <TableList
+                    username={member.login}
+                    avatar={member.avatar_url}
+                    role={member.type}
+                  />
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </Box>
     </div>
   );
 };
