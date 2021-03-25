@@ -12,6 +12,8 @@ services:
       dockerfile: react.dockerfile 
     ports: 
       - "3001:3000"
+    volumes:
+      - ./marko-front:/app 
     depends_on:
       - api_bakend
     networks:

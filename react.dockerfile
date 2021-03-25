@@ -2,8 +2,8 @@ FROM node:latest
 
 WORKDIR /app
 
-COPY ./marko-front ./
+RUN npm install 
 
-RUN npm install --silent 
+ENV PATH="./node_modules/.bin:$PATH"
 
-CMD ["npm","start"]
+CMD ls && npm start 
