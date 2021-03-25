@@ -1,5 +1,9 @@
 # Markopolo on-boarding off-boarding web application
 
+I forgot to initially fork the parent repo and started from scratch. All my commits can be seen here:
+
+[Original Repo](https://github.com/mredulorfiaz/markopolo-onboarding-off-boarding)
+
 ## Table of contents
 
 - [General Info](#general-info)
