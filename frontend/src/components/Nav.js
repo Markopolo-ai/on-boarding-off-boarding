@@ -44,13 +44,21 @@ class Nav extends Component {
                 <div>
                     <nav className="indigo darken-4">
                         <div className="nav-wrapper">
-                        <Link to="/" className="brand-logo">Admin Dashboard</Link>
-                        <ul id="nav-mobile" className="right hide-on-med-and-down">
-                            <li><button className="waves-effect waves-light btn teal darken-4" onClick={() => this.props.onClickNavLink('admin')}>Admins</button></li>
-                            <li><button className="waves-effect waves-light btn teal darken-4" onClick={() => this.props.onClickNavLink('staff')}>Staffs</button></li>
-                            <li><button className="waves-effect waves-light btn teal darken-4" onClick={() => this.props.onClickNavLink('permissions')}>Permissions</button></li>
-                            <li><button className="waves-effect waves-light btn red darken-4" onClick={this.logout}>Logout</button></li>
-                        </ul>
+                            <Link to="/dashboard" className="brand-logo">Admin Dashboard</Link>
+                            <ul id="nav-mobile" className="right hide-on-med-and-down">
+                                <li className={this.props.currentPage === "admins" ? "active": ""}>
+                                    <Link to="/dashboard/admins" onClick={() => this.props.onClickNavLink("admins")}>Admins</Link>
+                                </li>
+                                <li className={this.props.currentPage === "staffs" ? "active": ""}>
+                                    <Link to="/dashboard/staffs" onClick={() => this.props.onClickNavLink("staffs")}>Staffs</Link>
+                                </li>
+                                <li className={this.props.currentPage === "permissions" ? "active": ""}>
+                                    <Link to="/dashboard/permissions" onClick={() => this.props.onClickNavLink("permissions")}>Permissions</Link>
+                                </li>
+                                <li>
+                                    <Link to="#" className="waves-effect waves-light btn red darken-4" onClick={this.logout}>Logout</Link>
+                                </li>
+                            </ul>
                         </div>
                     </nav>
                 </div>

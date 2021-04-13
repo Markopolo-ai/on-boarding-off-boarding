@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Redirect, Route} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 import axios from 'axios';
 
 import {updateLoginStatus} from './actions';
@@ -48,8 +48,8 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/dashboard" component={Dashboard} />
+                <Route path="/login" component={Login} />
+                <Route path="/dashboard" component={Dashboard} />
 
                 {this.props.loggedIn
                     ? <Redirect to="/dashboard" />

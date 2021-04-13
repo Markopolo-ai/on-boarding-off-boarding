@@ -2,10 +2,6 @@ nav a.brand-logo {
     margin-left: 2rem;
 }
 
-nav ul#nav-mobile {
+nav ul {
     margin-right: 2rem;
-}
-
-nav ul li {
-    margin-left: 1rem;
 }

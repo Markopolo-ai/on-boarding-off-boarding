@@ -1,56 +1,62 @@
 import React, {Component} from 'react';
-import { Route } from 'react-router';
+import { Redirect, Route, Switch } from 'react-router';
 import {connect} from 'react-redux';
 import axios from 'axios';
 
 import Nav from './Nav';
 import Admin from './Admins';
+import AdminForm from './AdminForm';
 import Staff from './Staffs';
 import Permission from './Permissions';
 import { updateLoginStatus, updateAdminAccessToken, updateAdminData } from '../actions';
 
+/**
+ * Dashboard is the main component that will render all the features of
+ * the application to the logged-in admins.
+ */
 class Dashboard extends Component {
     state = {
-        currentPage: "admin"
+        currentPage: "admins",
+        adminLoaded: false
     }
 
-    constructor(props) {
-        super(props);
-        this.getAdmin = this.getAdmin.bind(this);
-    }
-
-    async getAdmin() {
-        try {
-            let get_id_url = "http://localhost:80/api/admins/login";
-            let resp = await axios({
-                method: 'get',
-                url: get_id_url
-            });
-            console.log(resp);
+    checkCurrentAdmin = () => {
+        let api_url = "http://localhost:80/api/admins/login";
+        axios({
+            method: 'get',
+            url: api_url
+        })
+        .then(resp => {
             this.props.updateAdminData({
                 id: resp.data.id,
                 email: null,
                 isSuperAdmin: null
             });
-
-            let get_admin_url = `http://localhost:80/api/admins/${this.props.id}`;
-            resp = await axios({
-                method: 'get',
-                url: get_admin_url
-            })
-            console.log(resp);
-            this.props.updateAdminData({
-                id: resp.data.data.id,
-                email: resp.data.data.email,
-                isSuperadmin: resp.data.data.is_superadmin
-            });
-        } catch (err) {
-            alert(err.response.data.message);
-        }
+            this.fetchAdminData(resp.data.id);
+        })
+        .catch(error => console.log(error));
     }
 
+    fetchAdminData = (id) => {
+        let api_url = `http://localhost:80/api/admins/${id}`;
+        axios({
+            method: 'get',
+            url: api_url
+        })
+        .then(resp => {
+            let {id, email, is_superadmin} = resp.data.data;
+            this.props.updateAdminData({
+                id: id,
+                email: email,
+                isSuperAdmin: is_superadmin
+            });
+            this.setState({adminLoaded: true});
+        })
+        .catch(error => console.log(error));
+    }
+    
     componentDidMount() {
-        this.getAdmin();
+        this.checkCurrentAdmin();
     }
 
     onClinkNavLink = (page) => {
@@ -61,9 +67,14 @@ class Dashboard extends Component {
         return(
             <div>
                 <Nav currentPage={this.state.currentPage} onClickNavLink={this.onClinkNavLink} />
-                {this.state.currentPage === 'admin' && <Admin/>}
-                {this.state.currentPage === 'staff' && <Staff/>}
-                {this.state.currentPage === 'permissions' && <Permission/>}
+                
+                <Switch>
+                    <Route path={`${this.props.match.url}/admins`} component={Admin} />
+                    <Route path={`${this.props.match.url}/staffs`} component={Staff} />
+                    <Route path={`${this.props.match.url}/permissions`} component={Permission} />
+                </Switch>
+
+                {this.state.adminLoaded && <Redirect to={`${this.props.match.url}/admins`} />}
             </div>
         )
     }

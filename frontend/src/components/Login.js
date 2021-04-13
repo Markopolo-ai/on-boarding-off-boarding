@@ -37,6 +37,10 @@ class Login extends Component {
             if (resp.data.status === "success") {
                 this.props.updateLoginStatus({loggedIn: true});
                 this.setState({success: true});
+                M.toast({
+                    html: `Successfully logged in as ${this.state.email}`,
+                    classes: "rounded"}
+                    );
             }
         })
         .catch(err => {
@@ -63,7 +67,7 @@ class Login extends Component {
     // was successful, redirects to the root url.
     render() {
         if (this.props.loggedIn || this.state.success) {
-            return <Redirect to="/" />
+            return <Redirect to="/dashboard" />
         } else {
             return (
                 <div id="login-form" className="container">
