@@ -1,44 +1,46 @@
-Hello candidate,
+# Manage Organization
 
-You are to build a web app through which companies and organizations can onboard new recruits or teammembers with ease.
+![ezgif-7-7fecaf96f958](https://user-images.githubusercontent.com/60034035/111368066-9a44ae80-86bf-11eb-91d0-b15673c9dc46.gif)
 
-How will it work?
 
-New teammmember provides the manager with their email id. The manager will input that email id into the web app and 
-the teammember will get access to the organization's Github, Trello, folders in Google Drive, Slack. In similar way,
-when the teammember leaves, with one click from the manager, their access will be revoked.
+This is a `Manage Organization` website. Using this admin can easily add or remove member organization platforms (Github, Trello, Google Drive, Slack) which they use for work.
 
-What you need to deliver
+:link: [Live Preview](https://on-boarding-off-boarding.vercel.app/)
 
-- [ ] UI design on Figma
-- [ ] Frontend of the webapp using React-Redux
-- [ ] (if needed) Backend in serverless framework
-- [ ] Dockerize the app
-- [ ] Make a pull request
-- [ ] Documentation of the entire webapp
+## How it works.
 
-If you have questions, please state your assumptions on the documentation and proceed with development.
+Through this website, the admin can send an invitation to join the existing platform organization use. You need to know the email address of the member to add member organization. If a member leaves, the administrator can easily remove the member from the platform.
 
-Here are some FAQs regarding the coding challenge:
+## Support Platform
+- [x] Github
 
-## Do I need to implement all the third-party applications?
+## Technology Used to Developed This Website
+- React JS
+- Chakra UI
+- Github API
 
-Not at all. Pick one, any one of Github, Slack, Drive. Or you can choose any third-party application as you like. We just want to see how comfortable you're at working with third-party APIs.
+## Site Overview
 
-## Should I implement the application in serverless or docker?
+### Homepage
+![1](https://user-images.githubusercontent.com/60034035/111368778-7c2b7e00-86c0-11eb-883f-2579b18ad835.png)
 
-Actually, both. How? Write two microservices. A partial backend micro-service in serverless and another partial service in docker. Of course they will need to communicate with each other. We understand that this makes the architecture overly complicated. But we are trying to understand your proficiency with microservices. If you don't get the time to implement both, choose serverless.
+### Invite Member
+![2](https://user-images.githubusercontent.com/60034035/111368785-7df54180-86c0-11eb-8812-39b5888f994b.png)
 
-## Do I need to submit a fully functional code?
+### Invite Member Through Mail
+![3](https://user-images.githubusercontent.com/60034035/111368795-7fbf0500-86c0-11eb-946c-dab927b47940.png)
 
-We understand that the time provided to you is very limited. So we don't expect you to make a picture perfect submission. However, please make sure to meticulously document your plans on how you'll implement the code.
+### Member List
+![4](https://user-images.githubusercontent.com/60034035/111368799-80f03200-86c0-11eb-92bf-3e3eac86e3e0.png)
 
-## What is the assessment criteria?
+### Member Remove
+![5](https://user-images.githubusercontent.com/60034035/111368808-82b9f580-86c0-11eb-8b50-cf81b34d3d5d.png)
 
-We want to see that you are comfortable working with - design tools (Figma), git, microservices, React, third-party APIs, code quality and documentation.
+### Member Remove Through Username
+![6](https://user-images.githubusercontent.com/60034035/111368812-83528c00-86c0-11eb-8053-370425946836.png)
 
-## I have further questions. Who should I ask?
+### Member List After Remove User
+![7](https://user-images.githubusercontent.com/60034035/111368815-8483b900-86c0-11eb-9f4d-a001ad9f6c04.png)
 
-To keep the challenge unbiased, we don't answer questions during the challenge. If you face any confusion, please write down your assumptions in the documentation and proceed accordingly.
 
-Happy hacking!
+
